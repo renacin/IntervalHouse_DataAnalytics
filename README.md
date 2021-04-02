@@ -31,8 +31,14 @@ N/A
 ### Resources ###
 N/A
 
+### Things To Complete In The Short Term ###
+ + Introduction
+ + Data Collection
+    + Census Data Clean Up
+ + Basic Census Visualization
+ + Research Into Effective Techniques
 
-### Things To Complete ###
+### Things To Complete In The Long Term ###
  + Analysis
  + Results
  + Conclusion
