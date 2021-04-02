@@ -4,7 +4,7 @@
 
 ### 1. Table Of Contents ###
     Section  | Content | Status | Date Completed
-    | :--- | ---: | ---: | ---: | ---:
+    | :--- | ---: | ---: | ---:
     1.0 Introduction | N/A | [] | 2021/01/01
     1.1 Data Available | N/A | [] | 2021/01/01
     1.2 Research Questions & Approach | N/A | [] | 2021/01/01
