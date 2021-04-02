@@ -2,7 +2,7 @@
 # Interval House Toronto: Data Analytics Project
 
 
-### 1. Table Of Contents ###
+### Table Of Contents ###
     Section  | Content | Status | Date Completed
     | :--- | ---: | ---: | ---:
     1.0 Introduction | N/A | [] | 2021/01/01
@@ -12,30 +12,27 @@
     1.4 Important Resources & Informal Literature Review | N/A | [] | 2021/01/01
 
 
-### 1. Introduction ###
+### Introduction ###
 N/A
 
 
-### 1. Research Questions & Approach ###
-N/A
-
-### 1. Research Questions & Approach ###
+### Data Available ###
 N/A
 
 
-### 1. Structure & Deliverables ###
+### Research Questions & Approach ###
 N/A
 
 
-### 2. Important Resources & Informal Literature Review ###
-N/A
-
-### 2. Methodology ###
-N/A
-
-### 2. Results ###
+### Structure & Deliverables ###
 N/A
 
 
-### 2. Conclusion ###
+### Important Resources & Informal Literature Review ###
 N/A
+
+
+### Things To Complete ###
+ + Analysis
+ + Results
+ + Conclusion
