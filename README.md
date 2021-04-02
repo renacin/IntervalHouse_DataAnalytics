@@ -11,27 +11,38 @@ Section  | Status | Date Completed
 [---- 1.3 Structure & Deliverables](https://github.com/renacin/IntervalHouse_DataAnalytics#structure--deliverables)  | [ ] | 2021/01/01
 [---- 1.4 Resources](https://github.com/renacin/IntervalHouse_DataAnalytics#resources)  | [ ] | 2021/01/01
 
+- - - -
 
 ### Introduction ###
 _"Interval House is Canada’s first center for women survivors of intimate partner violence and their children.
 Founded in 1973 by a feminist collective, we have always had a pioneering spirit, taking a holistic approach to helping
-women and children leave abuse behind and start new lives, free of violence."_   - [Interval House](https://www.intervalhouse.ca/inside-interval-house/)
+women and children leave abuse behind and start new lives, free of violence."_   - [Interval House Website, 2021](https://www.intervalhouse.ca/inside-interval-house/)
 
+
+- - - -
 
 ### Data Collection & Exploration ###
 N/A
 
 
+- - - -
+
 ### Research Questions & Approach ###
 In Progress
 
+
+- - - -
 
 ### Structure & Deliverables ###
 In Progress
 
 
+- - - -
+
 ### Resources ###
 In Progress
+
+- - - -
 
 ### Things To Complete In The Short Term ###
  + Introduction
@@ -44,3 +55,5 @@ In Progress
  + Analysis
  + Results
  + Conclusion
+
+- - - -
