@@ -4,7 +4,7 @@
 
 ### Table Of Contents ###
 Section  | Status | Date Completed
-| :--- | ---: | ---: | ---:
+| :--- | ---: | ---:
 [Introduction](https://github.com/renacin/IntervalHouse_DataAnalytics#introduction)  | [ ] | 2021/01/01
 [Data Available](https://github.com/renacin/IntervalHouse_DataAnalytics#data-available)  | [ ] | 2021/01/01
 [Research Questions & Approach](https://github.com/renacin/IntervalHouse_DataAnalytics#research-questions--approach)  | [ ] | 2021/01/01
