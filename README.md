@@ -27,7 +27,7 @@ _"Interval House is Canada’s first center for women survivors of intimate part
 Founded in 1973 by a feminist collective, we have always had a pioneering spirit, taking a holistic approach to helping
 women and children leave abuse behind and start new lives, free of violence."_   - [Interval House Website, 2021](https://www.intervalhouse.ca/inside-interval-house/)
 
-_*This project is explorative and informal in nature; this repository will help track research and discoveries from pertinent datasets.
+_This project is explorative and informal in nature; this repository will help track research and discoveries from pertinent datasets._
 
 - - - -
 ### Data Collection & Exploration ###
