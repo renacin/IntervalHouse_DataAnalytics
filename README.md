@@ -38,7 +38,7 @@ The following is an informal list of datasets that will be used in this project
 
 Name Of Dataset  | Data Type | Source | Sensitivity | Notes | Progress
 |:---|---:|---:|---:|---:|---:|
-Interval House Address Data | Excel | Interval House | Private | Ensure privacy aggregate to both CT, DA level. Turning into a rate _ x/per 100'000_ | :construction_worker:
+Interval House Address Data | Excel | Interval House | Private | Ensure privacy aggregate to both CT, DA level. Turning into a rate *x/per 100'000 individuals* | :construction_worker:
 Toronto Census Data 2016 | Excel | Stats Canada | Public | Collect On Both CT, DA Level, Clean, And Create A .SHP Version | :construction_worker:
 City Of Toronto Public Health: COVID-19 Data | Excel | Public Health Toronto | Public | How is this aggregated? Spatial Mismatch? | :construction_worker:
 
@@ -79,7 +79,7 @@ General Questions
 
 - - - -
 ### Things To Complete In The Short Term ###
- + Introduction
+ + Research Questions
  + Data Collection
     + Census Data Clean Up
  + Basic Census Visualization
