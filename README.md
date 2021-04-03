@@ -35,7 +35,7 @@ _*This project is explorative and informal in nature; this repository will help 
 
 
 ### Data Collection & Exploration ###
-The following is an informal list of datasets that will be used in this project
+Datasets used in this project:
 
 Name Of Dataset  | Data Type | Source | Sensitivity | Notes | Progress
 |:---|---:|---:|---:|---:|---:|
