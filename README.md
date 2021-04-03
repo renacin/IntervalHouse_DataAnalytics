@@ -139,7 +139,7 @@ In Progress
 Short Term:
 + Research Questions (Add More)
 + Data Collection (Add More)
-- Census Data Clean Up
+    - Census Data Clean Up
 + Basic Census Visualization
 + Research Into Effective Techniques
 
