@@ -18,8 +18,7 @@ Section  | Progress
 [---- 1.3 Deliverables](https://github.com/renacin/IntervalHouse_DataAnalytics#13-deliverables)  | :construction_worker:
 [---- 1.4 Questions & Resources](https://github.com/renacin/IntervalHouse_DataAnalytics#14-questions--resources)  | :construction_worker:
 
-
-
+<br />
 
 - - - -
 ### 1.0 Introduction ###
@@ -55,6 +54,12 @@ Interval House Address Data | CSV | Interval House | Private | Ensure privacy ag
 Toronto Census Data 2016 | CSV | Stats Canada | Public | Collect On Both CT, DA Level, Clean, And Create A .SHP Version | :construction_worker:
 Toronto Census Boundary Areas 2016 | SHP | Stats Canada | Public | Collect Both CT, DA Level | :construction_worker:
 City Of Toronto Public Health: COVID-19 Data | CSV | Public Health Toronto | Public | How is this aggregated? Spatial Mismatch? | :construction_worker:
+
+
+Data Preparation:
+1. _Statistics Canada Census Data_
+    + Blahh
+        - Blahh
 
 <br />
 
