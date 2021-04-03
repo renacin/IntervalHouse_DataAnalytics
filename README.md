@@ -7,15 +7,19 @@ Project Contributors:
 
 
 
+
+
 - - - -
 ### Table Of Contents ###
 Section  | Progress
 | :--- | ---:
 [1.0 Introduction](https://github.com/renacin/IntervalHouse_DataAnalytics#introduction)  | :heavy_check_mark:
 [---- 1.1 Data Collection](https://github.com/renacin/IntervalHouse_DataAnalytics#data-collection--exploration)  | :construction_worker:
-[---- 1.2 Research Questions & Approach](https://github.com/renacin/IntervalHouse_DataAnalytics#research-questions--approach)  | :heavy_multiplication_x:
+[---- 1.2 Research Questions & Approach](https://github.com/renacin/IntervalHouse_DataAnalytics#research-questions--approach)  | :construction_worker:
 [---- 1.3 Structure & Deliverables](https://github.com/renacin/IntervalHouse_DataAnalytics#structure--deliverables)  | :heavy_multiplication_x:
 [---- 1.4 Resources](https://github.com/renacin/IntervalHouse_DataAnalytics#resources)  | :heavy_multiplication_x:
+
+
 
 
 
@@ -43,6 +47,8 @@ _*This project is explorative and informal in nature; this repository will help 
 
 
 
+
+
 ### Data Collection & Exploration ###
 Datasets used in this project:
 
@@ -57,10 +63,35 @@ City Of Toronto Public Health: COVID-19 Data | CSV | Public Health Toronto | Pub
 
 
 
+
+
 ### Research Questions & Approach ###
-In Progress
+Here are a few research questions that this project hopes to answer.
+
+
+Primary Research Questions:
+1. _Where are clients located within the City Of Toronto?_
+    + Are there any spatial patterns?
+        - What is the catchment area for Interval House?
+        - If clients are spatially clustered, why are they in that area?
+        - What is the average distance (and standard deviation) between Interval House and a given client?
+
+    + Have client origins changed over time?
+        - Has the catchment area changed over time?
+
+2. _Which clients (Rep Via. Dissemination Areas) live within COVID-19 hotspots?_
+    + Are there any spatial patterns?
+        - What does this suggest about the past/current client list
+
+
+Secondary Research Questions:
+1. _Describe the demographics of areas that Interval House reside in_
+    + Economics, Ethnicity, Housing Types, Average Income, Mobility?
+        - Make the separation between client demographics and census tract demographics; we are looking at the latter
 
 <br />
+
+
 
 
 
@@ -71,14 +102,18 @@ In Progress
 
 
 
+
+
 ### Resources ###
-General Questions
+General Questions:
 
 1. _How will data be standardized, and normalized for population? What technique will be used? How will that influence data?_
     + Will I normalize against the entire population, or just counts of women in a dissemination area?
     + Z-Scores, Max-Min, Etc...
 
 <br />
+
+
 
 
 
