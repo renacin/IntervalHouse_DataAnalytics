@@ -53,7 +53,8 @@ Name Of Dataset  | Data Type | Source | Sensitivity | Notes | Progress
 Interval House Address Data | CSV | Interval House | Private | Ensure privacy aggregate to both CT, DA level. Turning into a rate *xx/100'000 individuals* | :heavy_multiplication_x:
 Toronto Census Data 2016 | CSV | Stats Canada | Public | Collect On Both CT, DA Level, Clean, And Create A .SHP Version | :construction_worker:
 Toronto Census Boundary Areas 2016 | SHP | Stats Canada | Public | Collect Both CT, DA Level | :construction_worker:
-City Of Toronto Public Health: COVID-19 Data | CSV | Public Health Toronto | Public | How is this aggregated? Spatial Mismatch? | :construction_worker:
+City Of Toronto: Neighborhood Boundaries | SHP | City Of Toronto: Open Data Catalogue | Public | Collect Both CT, DA Level | :construction_worker:
+City Of Toronto: COVID-19 Case Data | CSV | City Of Toronto: Open Data Catalogue | Public | How is this aggregated? Spatial Mismatch? | :construction_worker:
 
 <br />
 
@@ -147,6 +148,7 @@ Client Map & Cases Of COVID-19 | Graphic (PDF) | Public | Does Spatial Mismatch 
 
 **Resources Used:**
 1. _[Statistics Canada Census Boundary Files](https://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/bound-limit-2016-eng.cfm)_
+2. _[City Of Toronto Open Data Catalogue](https://open.toronto.ca/)_
 
 
 
