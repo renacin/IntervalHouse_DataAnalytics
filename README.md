@@ -1,7 +1,11 @@
 ![LOGO](https://github.com/renacin/IntervalHouse_DataAnalytics/blob/main/Documents/Images/IH_Logo.png "Interval House Toronto Logo")
 <h1 align="center">Interval House: Data Analytics Project</h1>
 
+Project Contributors:
+    + Fazia Mohammed
+    + Renacin Matadeen
 
+- - - -
 ### Table Of Contents ###
 Section  | Progress
 | :--- | ---:
