@@ -12,7 +12,7 @@ Project Contributors:
 ### Table Of Contents ###
 Section  | Progress
 | :--- | ---:
-[1.0 Introduction](https://github.com/renacin/IntervalHouse_DataAnalytics#10-introduction)  | :heavy_check_mark:
+[1.0 Introduction](https://github.com/renacin/IntervalHouse_DataAnalytics#10-introduction)  |
 [---- 1.1 Data Collection](https://github.com/renacin/IntervalHouse_DataAnalytics#11-data-collection-preparation--exploration)  | :construction_worker:
 [---- 1.2 Research Questions & Approach](https://github.com/renacin/IntervalHouse_DataAnalytics#12-research-questions)  | :construction_worker:
 [---- 1.3 Deliverables](https://github.com/renacin/IntervalHouse_DataAnalytics#13-deliverables)  | :heavy_multiplication_x:
@@ -51,7 +51,7 @@ Datasets used in this project:
 
 Name Of Dataset  | Data Type | Source | Sensitivity | Notes | Progress
 |:---|---:|:---:|---:|:---|---:|
-Interval House Address Data | CSV | Interval House | Private | Ensure privacy aggregate to both CT, DA level. Turning into a rate *xx/100'000 individuals* | :construction_worker:
+Interval House Address Data | CSV | Interval House | Private | Ensure privacy aggregate to both CT, DA level. Turning into a rate *xx/100'000 individuals* | :heavy_multiplication_x:
 Toronto Census Data 2016 | CSV | Stats Canada | Public | Collect On Both CT, DA Level, Clean, And Create A .SHP Version | :construction_worker:
 Toronto Census Boundary Areas 2016 | SHP | Stats Canada | Public | Collect Both CT, DA Level | :construction_worker:
 City Of Toronto Public Health: COVID-19 Data | CSV | Public Health Toronto | Public | How is this aggregated? Spatial Mismatch? | :construction_worker:
@@ -108,10 +108,10 @@ The following is a list of graphics, and datasets will be created:
 
 Name  | Data Type | Sensitivity | Notes | Progress | Date Completed
 |:---|---:|:---:|:---|---:|---:|
-Base Map Style | Graphic (PDF) | Public | Create a base map that will set the Color & Style for subsequent maps| :construction_worker: | N/A
-Client Observation Choropleth Map | Graphic (PDF) | Public | Create For Both CT & DA | :construction_worker: | N/A
-Client Observation Dot Map | Graphic (PDF) | Private | Overlay On Base Map; Distance To Interval House (Average & Standard Dev) | :construction_worker: | N/A
-Client Map & Cases Of COVID-19 | Graphic (PDF) | Public | Does Spatial Mismatch Influence Graphic? | :construction_worker: | N/A
+Base Map Style | Graphic (PDF) | Public | Create a base map that will set the Color & Style for subsequent maps| :heavy_multiplication_x: | N/A
+Client Observation Choropleth Map | Graphic (PDF) | Public | Create For Both CT & DA | :heavy_multiplication_x: | N/A
+Client Observation Dot Map | Graphic (PDF) | Private | Overlay On Base Map; Distance To Interval House (Average & Standard Dev) | :heavy_multiplication_x: | N/A
+Client Map & Cases Of COVID-19 | Graphic (PDF) | Public | Does Spatial Mismatch Influence Graphic? | :heavy_multiplication_x: | N/A
 
 <br />
 
