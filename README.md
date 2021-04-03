@@ -79,6 +79,7 @@ Here are a few research questions that this project hopes to answer.
     + Have client origins changed over time?
         - Has the catchment area changed over time?
 
+
 2. _Which clients (Rep Via. Dissemination Areas) live within COVID-19 hotspots?_
     + Are there any spatial patterns?
         - What does this suggest about the past/current client list
@@ -93,6 +94,12 @@ Here are a few research questions that this project hopes to answer.
         - Are there similar groups of people in respects to the demographics found in the areas where Interval House clients live?
         - What will a K-Means or other Cluster Analysis reveal?
 
+
+2. _Do Interval House Clients face issues accessing Interval House, or other social aid?_
+    + What services does Interval House provide that would benefit from an analysis of accessibility?
+    + Does interval house reach help clients access other resources?
+        - What kinds? If so where are they located?
+        - Does Interval House provide bridge services to help clients connect to other aid groups?
 
 <br />
 
