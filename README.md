@@ -33,6 +33,7 @@ _*This project is explorative and informal in nature; this repository will help 
 
 
 .
+
 ..
 ### Data Collection & Exploration ###
 The following is an informal list of datasets that will be used in this project
@@ -45,18 +46,21 @@ City Of Toronto Public Health: COVID-19 Data | Excel | Public Health Toronto | P
 
 
 .
+
 ..
 ### Research Questions & Approach ###
 In Progress
 
 
 .
+
 ..
 ### Structure & Deliverables ###
 In Progress
 
 
 .
+
 ..
 ### Resources ###
 General Questions
