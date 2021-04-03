@@ -127,7 +127,7 @@ In Progress
 
 
 **Resources Used:**
-1. _[Statistics Canada](https://www12.statcan.gc.ca/census-recensement/index-eng.cfm)_
+1. _[Statistics Canada Census](https://www12.statcan.gc.ca/census-recensement/index-eng.cfm)_
 
 <br />
 
@@ -137,13 +137,13 @@ In Progress
 - - - -
 ### Things To Do ###
 Short Term:
-    + Research Questions (Add More)
-    + Data Collection (Add More)
-        - Census Data Clean Up
-    + Basic Census Visualization
-    + Research Into Effective Techniques
++ Research Questions (Add More)
++ Data Collection (Add More)
+- Census Data Clean Up
++ Basic Census Visualization
++ Research Into Effective Techniques
 
 Long Term:
-    + Analysis
-    + Results
-    + Conclusion
++ Analysis
++ Results
++ Conclusion
