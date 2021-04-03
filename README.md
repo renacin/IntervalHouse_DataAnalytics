@@ -31,22 +31,29 @@ _- [Interval House, 2021](https://www.intervalhouse.ca/inside-interval-house/)_
 
 _*This project is explorative and informal in nature; this repository will help track research and discoveries from pertinent datasets._
 
-- - - -
+
+
 ### Data Collection & Exploration ###
-N/A
+The following is an informal list of datasets that will be used in this project
+
+Name Of Dataset  | Data Type | Source | Sensitivity | Notes | Progress
+|:---|---:|---:|---:|---:|---:|
+Toronto Census Data 2016 | Excel | Stats Canada | Public | Collect On Both CT, DA Level, Clean, And Create A .SHP Version | :construction_worker:
+Toronto Census Data 2016 | Excel | Stats Canada | Public | Collect On Both CT, DA Level, Clean, And Create A .SHP Version | :construction_worker:
+Toronto Census Data 2016 | Excel | Stats Canada | Public | Collect On Both CT, DA Level, Clean, And Create A .SHP Version | :construction_worker:
 
 
-- - - -
+
 ### Research Questions & Approach ###
 In Progress
 
 
-- - - -
+
 ### Structure & Deliverables ###
 In Progress
 
 
-- - - -
+
 ### Resources ###
 In Progress
 
