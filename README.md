@@ -31,9 +31,8 @@ _- [Interval House, 2021](https://www.intervalhouse.ca/inside-interval-house/)_
 
 _*This project is explorative and informal in nature; this repository will help track research and discoveries from pertinent datasets._
 
+<br />
 
-<br />
-<br />
 ### Data Collection & Exploration ###
 The following is an informal list of datasets that will be used in this project
 
