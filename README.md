@@ -1,5 +1,5 @@
 ![LOGO](https://github.com/renacin/IntervalHouse_DataAnalytics/blob/main/Documents/Images/IH_Logo.png "Interval House Toronto Logo")
-# Interval House Toronto: Data Analytics Project
+<h1 align="center">Interval House: Data Analytics Project</h1>
 
 
 ### Table Of Contents ###
