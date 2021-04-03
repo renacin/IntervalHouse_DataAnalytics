@@ -104,7 +104,11 @@ Here are a few research questions that this project hopes to answer.
 
 
 ### 1.3 Deliverables ###
-In Progress
+The following is a list of graphics, and datasets will be created:
+
+Name  | Data Type | Sensitivity | Notes | Progress | Date Completed
+|:---|---:|:---:|:---|---:|---:|
+1 | 2 | 3 | 4 | :construction_worker: | 5
 
 <br />
 
