@@ -58,9 +58,9 @@ In Progress
 
 General Questions
 
-    1. _How will data be standardized, and normalized for population? What technique will be used? How will that influence data?_
-        + Will I normalize against the entire population, or just counts of women in a dissemination area?
-        + Z-Scores, Max-Min, Etc...
+1. _How will data be standardized, and normalized for population? What technique will be used? How will that influence data?_
+    + Will I normalize against the entire population, or just counts of women in a dissemination area?
+    + Z-Scores, Max-Min, Etc...
 
 - - - -
 ### Things To Complete In The Short Term ###
