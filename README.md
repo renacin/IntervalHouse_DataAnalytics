@@ -55,11 +55,17 @@ Toronto Census Data 2016 | CSV | Stats Canada | Public | Collect On Both CT, DA 
 Toronto Census Boundary Areas 2016 | SHP | Stats Canada | Public | Collect Both CT, DA Level | :construction_worker:
 City Of Toronto Public Health: COVID-19 Data | CSV | Public Health Toronto | Public | How is this aggregated? Spatial Mismatch? | :construction_worker:
 
+<br />
 
 Data Preparation:
 1. _Statistics Canada Census Data_
-    + Blahh
-        - Blahh
+    + Census data does not come pre-attached to boundary shapefiles
+        - Create boundary files for City Of Toronto (CT, DA)
+        - Create a python program that will;
+            + Isolate pertinent rows within census data,
+            + Reorganize to best fit GIS data types,
+            + Deal with missing data,
+            + Create actionable SHP files  
 
 <br />
 
@@ -85,6 +91,7 @@ Here are a few research questions that this project hopes to answer.
     + Are there any spatial patterns?
         - What does this suggest about the past/current client list
 
+<br />
 
 **Secondary Research Questions:**
 1. _Describe the demographics of areas that Interval House reside in_
