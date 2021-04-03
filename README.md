@@ -146,7 +146,14 @@ Client Map & Cases Of COVID-19 | Graphic (PDF) | Public | Does Spatial Mismatch 
 
 
 **Resources Used:**
-1. _[Statistics Canada Census](https://www12.statcan.gc.ca/census-recensement/index-eng.cfm)_
+1. _[Statistics Canada Census Boundary Files](https://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/bound-limit-2016-eng.cfm)_
+
+
+
+**General Notes**
+1. Common Projection: _NAD 83 / UTM ZONE 17_
+
+
 
 <br />
 
