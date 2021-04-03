@@ -14,15 +14,15 @@ Section  | Progress
 | :--- | ---:
 [1.0 Introduction](https://github.com/renacin/IntervalHouse_DataAnalytics#introduction)  | :heavy_check_mark:
 [---- 1.1 Data Collection](https://github.com/renacin/IntervalHouse_DataAnalytics#data-collection--exploration)  | :construction_worker:
-[---- 1.2 Research Questions & Approach](https://github.com/renacin/IntervalHouse_DataAnalytics#research-questions--approach)  | :construction_worker:
-[---- 1.3 Structure & Deliverables](https://github.com/renacin/IntervalHouse_DataAnalytics#structure--deliverables)  | :heavy_multiplication_x:
-[---- 1.4 Resources](https://github.com/renacin/IntervalHouse_DataAnalytics#resources)  | :heavy_multiplication_x:
+[---- 1.2 Research Questions & Approach](https://github.com/renacin/IntervalHouse_DataAnalytics#research-questions)  | :construction_worker:
+[---- 1.3 Deliverables](https://github.com/renacin/IntervalHouse_DataAnalytics#structure--deliverables)  | :heavy_multiplication_x:
+[---- 1.4 Questions & Resources](https://github.com/renacin/IntervalHouse_DataAnalytics#resources)  | :heavy_multiplication_x:
 
 
 
 
 - - - -
-### Introduction ###
+### 1.0 Introduction ###
 
 >"Interval House is Canada’s first center for women survivors of intimate partner violence and their children.
 Founded in 1973 by a feminist collective, we have always had a pioneering spirit, taking a holistic approach to helping
@@ -46,7 +46,7 @@ _*This project is explorative and informal in nature; this repository will help 
 
 
 
-### Data Collection & Exploration ###
+### 1.1 Data Collection, Preparation & Exploration ###
 Datasets used in this project:
 
 Name Of Dataset  | Data Type | Source | Sensitivity | Notes | Progress
@@ -61,7 +61,7 @@ City Of Toronto Public Health: COVID-19 Data | CSV | Public Health Toronto | Pub
 
 
 
-### Research Questions ###
+### 1.2 Research Questions ###
 Here are a few research questions that this project hopes to answer.
 
 
@@ -103,7 +103,7 @@ Here are a few research questions that this project hopes to answer.
 
 
 
-### Deliverables ###
+### 1.3 Deliverables ###
 In Progress
 
 <br />
@@ -111,7 +111,7 @@ In Progress
 
 
 
-### Questions & Resources ###
+### 1.4 Questions & Resources ###
 
 **General Questions:**
 1. _How will data be standardized, and normalized for population? What technique will be used? How will that influence data?_
