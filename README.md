@@ -44,15 +44,26 @@ City Of Toronto Public Health: COVID-19 Data | Excel | Public Health Toronto | P
 
 
 
+
+<br />
+
 ### Research Questions & Approach ###
 In Progress
 
 
 
+
+
+<br />
+
 ### Structure & Deliverables ###
 In Progress
 
 
+
+
+
+<br />
 
 ### Resources ###
 General Questions
@@ -60,6 +71,11 @@ General Questions
 1. _How will data be standardized, and normalized for population? What technique will be used? How will that influence data?_
     + Will I normalize against the entire population, or just counts of women in a dissemination area?
     + Z-Scores, Max-Min, Etc...
+
+
+
+
+<br />
 
 - - - -
 ### Things To Complete In The Short Term ###
