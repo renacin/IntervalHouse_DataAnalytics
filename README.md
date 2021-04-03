@@ -69,7 +69,7 @@ City Of Toronto Public Health: COVID-19 Data | CSV | Public Health Toronto | Pub
 Here are a few research questions that this project hopes to answer.
 
 
-Primary Research Questions:
+**Primary Research Questions:**
 1. _Where are clients located within the City Of Toronto?_
     + Are there any spatial patterns?
         - What is the catchment area for Interval House?
@@ -84,10 +84,15 @@ Primary Research Questions:
         - What does this suggest about the past/current client list
 
 
-Secondary Research Questions:
+**Secondary Research Questions:**
 1. _Describe the demographics of areas that Interval House reside in_
     + Economics, Ethnicity, Housing Types, Average Income, Mobility?
         - Make the separation between client demographics and census tract demographics; we are looking at the latter
+
+    + _"Birds Of The Feather Flock Together"_
+        - Are there similar groups of people in respects to the demographics found in the areas where Interval House clients live?
+        - What will a K-Means or other Cluster Analysis reveal?
+
 
 <br />
 
