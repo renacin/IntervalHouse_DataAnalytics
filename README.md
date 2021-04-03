@@ -14,6 +14,12 @@ Section  | Progress
 - - - -
 ### Introduction ###
 
+>"Interval House is Canada’s first center for women survivors of intimate partner violence and their children.
+Founded in 1973 by a feminist collective, we have always had a pioneering spirit, taking a holistic approach to helping
+women and children leave abuse behind and start new lives, free of violence."   
+
+_- [Interval House, 2021](https://www.intervalhouse.ca/inside-interval-house/)_
+
 As an ally in the fight against partner violence Interval House has helped improve the lives of many women, and children
 over its years of operation. During its deployment, Interval House has also increased its capacity to help; both in
 terms of size, as well as pioneering different services that can better help individuals escaping violence.
@@ -23,29 +29,23 @@ Data analytics are yet another area that Interval House would like to explore in
 This project follows an explorative analysis of Interval House data in an attempt to identify, and better serve
 areas of need in their present/future client list.
 
->"Interval House is Canada’s first center for women survivors of intimate partner violence and their children.
-Founded in 1973 by a feminist collective, we have always had a pioneering spirit, taking a holistic approach to helping
-women and children leave abuse behind and start new lives, free of violence."   
-
-_- [Interval House, 2021](https://www.intervalhouse.ca/inside-interval-house/)_
-
 _*This project is explorative and informal in nature; this repository will help track research and discoveries from pertinent datasets._
 
 <br />
+
 
 ### Data Collection & Exploration ###
 The following is an informal list of datasets that will be used in this project
 
 Name Of Dataset  | Data Type | Source | Sensitivity | Notes | Progress
 |:---|---:|---:|---:|---:|---:|
-Interval House Address Data | Excel | Interval House | Private | Ensure privacy aggregate to both CT, DA level. Turning into a rate *xx/100'000 individuals* | :construction_worker:
-Toronto Census Data 2016 | Excel | Stats Canada | Public | Collect On Both CT, DA Level, Clean, And Create A .SHP Version | :construction_worker:
-City Of Toronto Public Health: COVID-19 Data | Excel | Public Health Toronto | Public | How is this aggregated? Spatial Mismatch? | :construction_worker:
-
-
-
+Interval House Address Data | CSV | Interval House | Private | Ensure privacy aggregate to both CT, DA level. Turning into a rate *xx/100'000 individuals* | :construction_worker:
+Toronto Census Data 2016 | CSV | Stats Canada | Public | Collect On Both CT, DA Level, Clean, And Create A .SHP Version | :construction_worker:
+Toronto Census Boundary Areas 2016 | CSV | Stats Canada | Public | Collect Both CT, DA Level | :construction_worker:
+City Of Toronto Public Health: COVID-19 Data | CSV | Public Health Toronto | Public | How is this aggregated? Spatial Mismatch? | :construction_worker:
 
 <br />
+
 
 ### Research Questions & Approach ###
 In Progress
@@ -56,6 +56,7 @@ In Progress
 
 <br />
 
+
 ### Structure & Deliverables ###
 In Progress
 
@@ -64,6 +65,7 @@ In Progress
 
 
 <br />
+
 
 ### Resources ###
 General Questions
@@ -76,6 +78,7 @@ General Questions
 
 
 <br />
+
 
 - - - -
 ### Things To Complete In The Short Term ###
