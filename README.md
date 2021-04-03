@@ -60,8 +60,8 @@ City Of Toronto Public Health: COVID-19 Data | CSV | Public Health Toronto | Pub
 Data Preparation:
 1. _Statistics Canada Census Data_
     + Census data does not come pre-attached to boundary shapefiles
-        - Create boundary files for City Of Toronto (CT, DA)
-        - Create a python program that will;
+        + Create boundary files for City Of Toronto (CT, DA)
+        + Create a python program that will;
             + Isolate pertinent rows within census data,
             + Reorganize to best fit GIS data types,
             + Deal with missing data,
@@ -79,36 +79,36 @@ Here are a few research questions that this project hopes to answer.
 **Primary Research Questions:**
 1. _Where are clients located within the City Of Toronto?_
     + Are there any spatial patterns?
-        - What is the catchment area for Interval House?
-        - If clients are spatially clustered, why are they in that area?
-        - What is the average distance (and standard deviation) between Interval House and a given client?
+        + What is the catchment area for Interval House?
+        + If clients are spatially clustered, why are they in that area?
+        + What is the average distance (and standard deviation) between Interval House and a given client?
 
     + Have client origins changed over time?
-        - Has the catchment area changed over time?
+        + Has the catchment area changed over time?
 
 
 2. _Which clients (Rep Via. Dissemination Areas) live within COVID-19 hotspots?_
     + Are there any spatial patterns?
-        - What does this suggest about the past/current client list
+        + What does this suggest about the past/current client list
 
 <br />
 
 **Secondary Research Questions:**
 1. _Describe the demographics of areas that Interval House reside in_
     + Economics, Ethnicity, Housing Types, Average Income, Mobility?
-        - Make the separation between client demographics and census tract demographics; we are looking at the latter
+        + Make the separation between client demographics and census tract demographics; we are looking at the latter
 
     + _"Birds Of The Feather Flock Together"_
-        - Are there similar groups of people in respects to the demographics found in the areas where Interval House clients live?
-        - What will a K-Means or other Cluster Analysis reveal?
+        + Are there similar groups of people in respects to the demographics found in the areas where Interval House clients live?
+        + What will a K-Means or other Cluster Analysis reveal?
 
 
 2. _Do clients face issues accessing Interval House, or other social aid?_
     + Which clients, or more generally which areas are the least serviced in terms of similar aid?
     + What services does Interval House provide that would benefit from an analysis of accessibility?
     + Does Interval House help clients access other resources?
-        - What kinds? If so where are they located?
-        - Does Interval House provide bridge services to help clients connect to other aid groups?
+        + What kinds? If so where are they located?
+        + Does Interval House provide bridge services to help clients connect to other aid groups?
 
 <br />
 
@@ -158,7 +158,7 @@ Client Map & Cases Of COVID-19 | Graphic (PDF) | Public | Does Spatial Mismatch 
 Short Term:
 + Research Questions (Add More)
 + Data Collection (Add More)
-    - Census Data Clean Up
+    + Census Data Clean Up
 + Basic Census Visualization
 + Research Into Effective Techniques
 
