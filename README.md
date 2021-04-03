@@ -15,8 +15,8 @@ Section  | Progress
 [1.0 Introduction](https://github.com/renacin/IntervalHouse_DataAnalytics#10-introduction)  |
 [---- 1.1 Data Collection](https://github.com/renacin/IntervalHouse_DataAnalytics#11-data-collection-preparation--exploration)  | :construction_worker:
 [---- 1.2 Research Questions & Approach](https://github.com/renacin/IntervalHouse_DataAnalytics#12-research-questions)  | :construction_worker:
-[---- 1.3 Deliverables](https://github.com/renacin/IntervalHouse_DataAnalytics#13-deliverables)  | :heavy_multiplication_x:
-[---- 1.4 Questions & Resources](https://github.com/renacin/IntervalHouse_DataAnalytics#14-questions--resources)  | :heavy_multiplication_x:
+[---- 1.3 Deliverables](https://github.com/renacin/IntervalHouse_DataAnalytics#13-deliverables)  | :construction_worker:
+[---- 1.4 Questions & Resources](https://github.com/renacin/IntervalHouse_DataAnalytics#14-questions--resources)  | :construction_worker:
 
 
 
