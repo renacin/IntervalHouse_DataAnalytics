@@ -1,9 +1,11 @@
 ![LOGO](https://github.com/renacin/IntervalHouse_DataAnalytics/blob/main/Documents/Images/IH_Logo.png "Interval House Toronto Logo")
-<h1 align="center">Interval House: Data Analytics Project</h1>
+<h1 align="center">Data Analytics Project</h1>
 
 Project Contributors:
 + Fazia Mohammed
 + Renacin Matadeen
+
+
 
 - - - -
 ### Table Of Contents ###
@@ -14,6 +16,8 @@ Section  | Progress
 [---- 1.2 Research Questions & Approach](https://github.com/renacin/IntervalHouse_DataAnalytics#research-questions--approach)  | :heavy_multiplication_x:
 [---- 1.3 Structure & Deliverables](https://github.com/renacin/IntervalHouse_DataAnalytics#structure--deliverables)  | :heavy_multiplication_x:
 [---- 1.4 Resources](https://github.com/renacin/IntervalHouse_DataAnalytics#resources)  | :heavy_multiplication_x:
+
+
 
 - - - -
 ### Introduction ###
@@ -38,6 +42,7 @@ _*This project is explorative and informal in nature; this repository will help 
 <br />
 
 
+
 ### Data Collection & Exploration ###
 Datasets used in this project:
 
@@ -51,24 +56,19 @@ City Of Toronto Public Health: COVID-19 Data | CSV | Public Health Toronto | Pub
 <br />
 
 
+
 ### Research Questions & Approach ###
 In Progress
 
-
-
-
-
 <br />
+
 
 
 ### Structure & Deliverables ###
 In Progress
 
-
-
-
-
 <br />
+
 
 
 ### Resources ###
@@ -78,10 +78,8 @@ General Questions
     + Will I normalize against the entire population, or just counts of women in a dissemination area?
     + Z-Scores, Max-Min, Etc...
 
-
-
-
 <br />
+
 
 
 - - - -
