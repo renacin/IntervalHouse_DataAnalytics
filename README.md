@@ -50,7 +50,7 @@ _*This project is explorative and informal in nature; this repository will help 
 Datasets used in this project:
 
 Name Of Dataset  | Data Type | Source | Sensitivity | Notes | Progress
-|:---|---:|---:|---:|---:|---:|
+|:---|---:|:---:|---:|:---|---:|
 Interval House Address Data | CSV | Interval House | Private | Ensure privacy aggregate to both CT, DA level. Turning into a rate *xx/100'000 individuals* | :construction_worker:
 Toronto Census Data 2016 | CSV | Stats Canada | Public | Collect On Both CT, DA Level, Clean, And Create A .SHP Version | :construction_worker:
 Toronto Census Boundary Areas 2016 | SHP | Stats Canada | Public | Collect Both CT, DA Level | :construction_worker:
