@@ -2,8 +2,8 @@
 <h1 align="center">Interval House: Data Analytics Project</h1>
 
 Project Contributors:
-    + Fazia Mohammed
-    + Renacin Matadeen
++ Fazia Mohammed
++ Renacin Matadeen
 
 - - - -
 ### Table Of Contents ###
