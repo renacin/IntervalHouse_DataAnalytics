@@ -8,7 +8,6 @@ Project Contributors:
 
 
 
-
 - - - -
 ### Table Of Contents ###
 Section  | Progress
@@ -22,7 +21,6 @@ Section  | Progress
 
 
 
-
 - - - -
 ### Introduction ###
 
@@ -30,7 +28,7 @@ Section  | Progress
 Founded in 1973 by a feminist collective, we have always had a pioneering spirit, taking a holistic approach to helping
 women and children leave abuse behind and start new lives, free of violence."   
 
-_- [Interval House, 2021](https://www.intervalhouse.ca/inside-interval-house/)_
+_- [Interval House](https://www.intervalhouse.ca/inside-interval-house/)_
 
 As an ally in the fight against partner violence Interval House has helped improve the lives of many women, and children
 over its years of operation. During its deployment, Interval House has also increased its capacity to help; both in
@@ -48,7 +46,6 @@ _*This project is explorative and informal in nature; this repository will help 
 
 
 
-
 ### Data Collection & Exploration ###
 Datasets used in this project:
 
@@ -56,7 +53,7 @@ Name Of Dataset  | Data Type | Source | Sensitivity | Notes | Progress
 |:---|---:|---:|---:|---:|---:|
 Interval House Address Data | CSV | Interval House | Private | Ensure privacy aggregate to both CT, DA level. Turning into a rate *xx/100'000 individuals* | :construction_worker:
 Toronto Census Data 2016 | CSV | Stats Canada | Public | Collect On Both CT, DA Level, Clean, And Create A .SHP Version | :construction_worker:
-Toronto Census Boundary Areas 2016 | CSV | Stats Canada | Public | Collect Both CT, DA Level | :construction_worker:
+Toronto Census Boundary Areas 2016 | SHP | Stats Canada | Public | Collect Both CT, DA Level | :construction_worker:
 City Of Toronto Public Health: COVID-19 Data | CSV | Public Health Toronto | Public | How is this aggregated? Spatial Mismatch? | :construction_worker:
 
 <br />
@@ -64,8 +61,7 @@ City Of Toronto Public Health: COVID-19 Data | CSV | Public Health Toronto | Pub
 
 
 
-
-### Research Questions & Approach ###
+### Research Questions ###
 Here are a few research questions that this project hopes to answer.
 
 
@@ -95,9 +91,10 @@ Here are a few research questions that this project hopes to answer.
         - What will a K-Means or other Cluster Analysis reveal?
 
 
-2. _Do Interval House Clients face issues accessing Interval House, or other social aid?_
+2. _Do clients face issues accessing Interval House, or other social aid?_
+    + Which clients, or more generally which areas are the least serviced in terms of similar aid?
     + What services does Interval House provide that would benefit from an analysis of accessibility?
-    + Does interval house reach help clients access other resources?
+    + Does Interval House help clients access other resources?
         - What kinds? If so where are they located?
         - Does Interval House provide bridge services to help clients connect to other aid groups?
 
@@ -106,8 +103,7 @@ Here are a few research questions that this project hopes to answer.
 
 
 
-
-### Structure & Deliverables ###
+### Deliverables ###
 In Progress
 
 <br />
@@ -115,29 +111,39 @@ In Progress
 
 
 
+### Questions & Resources ###
 
-### Resources ###
-General Questions:
-
+**General Questions:**
 1. _How will data be standardized, and normalized for population? What technique will be used? How will that influence data?_
     + Will I normalize against the entire population, or just counts of women in a dissemination area?
     + Z-Scores, Max-Min, Etc...
+
+2. _Which cluster analysis technique would be most effective in discovering areas with similar demographics?_
+    + Which is better K-Mean, Hierarchical, Etc...
+
+3. _How do we measure client mobility?_
+    + Straight Distance (As the crows flies), Networked Distance (Manhattan Distance); Via Transit Route, Or Street Networks?
+
+
+
+**Resources Used:**
+1. _[Statistics Canada](https://www12.statcan.gc.ca/census-recensement/index-eng.cfm)_
 
 <br />
 
 
 
 
-
 - - - -
-### Things To Complete In The Short Term ###
- + Research Questions
- + Data Collection
-    + Census Data Clean Up
- + Basic Census Visualization
- + Research Into Effective Techniques
+### Things To Do ###
+Short Term:
+    + Research Questions (Add More)
+    + Data Collection (Add More)
+        - Census Data Clean Up
+    + Basic Census Visualization
+    + Research Into Effective Techniques
 
-### Things To Complete In The Long Term ###
- + Analysis
- + Results
- + Conclusion
+Long Term:
+    + Analysis
+    + Results
+    + Conclusion
