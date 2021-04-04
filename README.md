@@ -54,9 +54,12 @@ Interval House Address Data | CSV | Interval House | Private | Ensure privacy ag
 Toronto Census Data 2016 | CSV | Stats Canada | Public | Collect On Both CT, DA Level, Clean, And Create A .SHP Version                                             | :construction_worker:
 Toronto Census Boundary Areas 2016 | SHP | Stats Canada | Public | Collect Both CT, DA Level                                                                        | :heavy_check_mark:
 City Of Toronto: Neighborhood Boundaries | SHP | City Of Toronto: Open Data Catalogue | Public | Does it match CT, or DA?                                           | :heavy_check_mark:
-City Of Toronto: COVID-19 Case Data | CSV | City Of Toronto: Open Data Catalogue | Public | How is this aggregated? Spatial Mismatch?                               | :construction_worker:
+City Of Toronto: COVID-19 Case Data | EXCEL | City Of Toronto: Open Data Catalogue | Public | How is this aggregated? Spatial Mismatch?                             | :heavy_check_mark:
 
 <br />
+
+
+
 
 Data Preparation:
 1. _Statistics Canada Census Data_
@@ -152,11 +155,12 @@ Client Map & Cases Of COVID-19 | Graphic (PDF) | Public | Does Spatial Mismatch 
 **Resources Used:**
 1. _[Statistics Canada Census Boundary Files](https://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/bound-limit-2016-eng.cfm)_
 2. _[City Of Toronto Open Data Catalogue](https://open.toronto.ca/)_
-
+3. _[City Of Toronto COVID-19 Data](https://drive.google.com/file/d/1jzH64LvFQ-UsDibXO0MOtvjbL2CvnV3N/view)_
 
 
 **General Notes**
 1. Common Projection: _NAD 83 / UTM ZONE 17_
+2. Size Of Geographies: _Neighborhood > Census Tract > Dissemination Area_
 
 
 
