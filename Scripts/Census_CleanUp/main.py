@@ -8,7 +8,18 @@ from Census_Funcs.func import *
 
 # Define Main Logic Of Census Data Cleaner
 def main():
-    pass
+
+    # Filter Toronto Census Tract Data From Main Census File
+    ct_census_data_path = r"C:\Users\renac\Downloads\CT_CensusData_2016.csv"
+    ct_filtered_data_path = r"C:\Users\renac\Documents\Programming\Python\IntervalHouse_DataAnalytics\Data\CensusData\CensusToronto_CT_2016"
+    ct_range = [535_000_100, 535_080_202]
+    CensusDataPrep.isolate_data(ct_census_data_path, ct_filtered_data_path, ct_range, "ALT_GEO_CODE", "CT")
+
+    # Filter Toronto Dissemination Area Data From Main Census File
+    ct_census_data_path = r"C:\Users\renac\Downloads\CT_CensusData_2016.csv"
+    ct_filtered_data_path = r"C:\Users\renac\Documents\Programming\Python\IntervalHouse_DataAnalytics\Data\CensusData\CensusToronto_CT_2016"
+    ct_range = [535_000_100, 535_080_202]
+    CensusDataPrep.isolate_data(ct_census_data_path, ct_filtered_data_path, ct_range, "ALT_GEO_CODE", "CT")
 
 
 # ----------------------------------------------------------------------------------------------------------------------

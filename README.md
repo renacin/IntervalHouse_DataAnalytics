@@ -168,9 +168,13 @@ Client Map & Cases Of COVID-19 | Graphic (PDF) | Public | Does Spatial Mismatch 
 
 
 **Resources Used:**
-1. _[Statistics Canada Census Boundary Files](https://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/bound-limit-2016-eng.cfm)_
-2. _[City Of Toronto Open Data Catalogue](https://open.toronto.ca/)_
-3. _[City Of Toronto COVID-19 Data](https://drive.google.com/file/d/1jzH64LvFQ-UsDibXO0MOtvjbL2CvnV3N/view)_
+
+1. _[City Of Toronto Open Data Catalogue](https://open.toronto.ca/)_
+2. _[City Of Toronto COVID-19 Data](https://drive.google.com/file/d/1jzH64LvFQ-UsDibXO0MOtvjbL2CvnV3N/view)_
+
+3. _[Statistics Canada Census Boundary Files](https://www12.statcan.gc.ca/census-recensement/2011/geo/bound-limit/bound-limit-2016-eng.cfm)_
+4. _[Census metropolitan areas (CMAs), tracted census agglomerations (CAs) and census tracts (CTs)](https://www12.statcan.gc.ca/census-recensement/2016/dp-pd/prof/details/download-telecharger/comp/page_dl-tc.cfm?Lang=E)_
+
 
 
 

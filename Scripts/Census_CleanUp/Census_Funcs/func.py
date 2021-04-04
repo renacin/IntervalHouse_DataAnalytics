@@ -9,7 +9,8 @@ import pandas as pd
 class CensusDataPrep:
     """This class will help store methods that will efficiently parse, reorganize, and append Census data to a shapefile."""
 
-    def isolate_data(in_path, out_path, geo_range=[0, 0], geoname):
+    def isolate_data(in_path, out_path, geo_range, geoname, geo_type):
+
         """
         This class method imports the CSV containing Census data and writes another CSV with only the rows
         within the range specified. Data is filtered this way as it is too intensive to continuously read, and filter
@@ -17,45 +18,47 @@ class CensusDataPrep:
 
         This function takes:
             + IN_PATH:
-                leading to the original CSV file containing all census data for a certain geographic scale of measurement
+                - Leadings to the original CSV file containing all census data for a certain geographic scale of measurement
             + OUT_PATH:
-                leading to the place where a filtered dataframe will be written as a CSV
+                - Leadings to the place where a filtered dataframe will be written as a CSV
             + GEO_RANGE:
-                the range of geographic areas you would like to parse from the main dataset
+                - The range of geographic areas you would like to parse from the main dataset
+            + GEO_NAME:
+                - The column name in the Census dataset that shows
         """
 
+        # Init temporary dataframe; set chunksize to 1'000'000 lines
         temp_df = pd.DataFrame()
-
-        # [1.] File Is Too Large To Hold In Memory, Read In 1'000'000 Line Chunks
         chunksize = 10 ** 6
 
-        # [2.] Filter Geo Polygons Based On GEO_NAME, Append To New DF
+        # Filter rows; must be within range defined by user. Append to new dataframe
         counter = 1
-        for chunk in pd.read_csv(in_path, chunksize=chunksize):
+        for chunk in pd.read_csv(in_path, chunksize=chunksize, low_memory=False):
 
-            chunk = chunk[pd.to_numeric(chunk['GEO_NAME'], errors='coerce').notnull()]
-            chunk['GEO_NAME'] = chunk['GEO_NAME'].astype(int)
+            chunk = chunk[pd.to_numeric(chunk[geoname], errors="coerce").notnull()]
+            chunk[geoname] = chunk[geoname].astype(int)
 
-            temp_focus_df = chunk[chunk["GEO_NAME"].between(35200000, 35205000)] # CoT DAs
+            temp_focus_df = chunk[chunk[geoname].between(geo_range[0], geo_range[1])]
 
             frames = [temp_df, temp_focus_df]
             temp_df = pd.concat(frames)
 
-            print("Progress: Chunk {}/47".format(counter)) # Write To A CSV, This Takes Up Too Much Memory
+            print(f"Progress: Chunk {counter}")
             counter += 1
 
-        # [3.] Write To CSV, Don't Repeat Intensive Processes
-        temp_df.to_csv(out_path, index=False)
+        # Write temporay dataframe to out_path
+        complete_outpath = f"{out_path}_{geo_type}.csv"
+        temp_df.to_csv(complete_outpath, index=False)
 
 
-
-
-
-
-
-
-    def parse_data():
-        pass
-
-    def reorg_data():
-        pass
+    #
+    #
+    #
+    #
+    #
+    #
+    # def parse_data():
+    #     pass
+    #
+    # def reorg_data():
+    #     pass
