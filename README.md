@@ -158,9 +158,13 @@ Client Map & Cases Of COVID-19 | Graphic (PDF) | Public | Does Spatial Mismatch 
 3. _[City Of Toronto COVID-19 Data](https://drive.google.com/file/d/1jzH64LvFQ-UsDibXO0MOtvjbL2CvnV3N/view)_
 
 
+
 **General Notes**
 1. Common Projection: _NAD 83 / UTM ZONE 17_
-2. Size Of Geographies: _Neighborhood > Census Tract > Dissemination Area_
+2. Size of Geographies: _Neighborhood > Census Tract > Dissemination Area_
+3. In respects to analysis:
+    + _How do I analyze point data?_
+    + _Should I standardize data, then group in regards to standard deviation?_
 
 
 
