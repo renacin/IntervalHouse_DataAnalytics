@@ -147,8 +147,23 @@ Client Map & Cases Of COVID-19 | Graphic (PDF) | Public | Does Spatial Mismatch 
 3. _How do we measure client mobility?_
     + Straight Distance (As the crows flies), Networked Distance (Manhattan Distance); Via Transit Route, Or Street Networks?
 
-3. _Can I use data collected on a CT (larger) level in an analysis on DA (smaller) scale?_
+4. _Can I use data collected on a CT (larger) level in an analysis on DA (smaller) scale?_
     + Do I have to make any considerations?
+
+5. _In respects to analysis:_
+    + How do I analyze point data?
+    + Should I standardize data, then group in regards to standard deviation?
+
+6. _In regards to clusters in my dataset:_
+    + How do I know there is a spatial clustering in my dataset?
+    + How can I be sure statistically that there is a cluster in my dataset?
+        + How do I make use of MORAN's I Statistic
+
+7. _In regards to basic choropleth maps, and other graduated color maps:_
+    + How do I identify statistically significant areas of a certain observation?
+        + How do I make use of GI* analysis?
+        + Would this be effective for the data that I have?
+        + Many polygons will no contain observation at all; does this change how I perform my analysis?
 
 
 
@@ -160,11 +175,11 @@ Client Map & Cases Of COVID-19 | Graphic (PDF) | Public | Does Spatial Mismatch 
 
 
 **General Notes**
-1. Common Projection: _NAD 83 / UTM ZONE 17_
-2. Size of Geographies: _Neighborhood > Census Tract > Dissemination Area_
-3. In respects to analysis:
-    + _How do I analyze point data?_
-    + _Should I standardize data, then group in regards to standard deviation?_
+1. Common Projection:
+    + _NAD 83 / UTM ZONE 17_
+2. Size of Geographies:
+    + _Neighborhood > Census Tract > Dissemination Area_
+
 
 
 
