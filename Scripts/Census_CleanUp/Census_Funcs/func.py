@@ -25,6 +25,10 @@ class CensusDataPrep:
                 - The range of geographic areas you would like to parse from the main dataset
             + GEO_NAME:
                 - The column name in the Census dataset that shows
+
+        Notes:
+            + In Census Tract Census Data ALT_GEO_CODE == CTUID
+            + In Dissemination Area Census GEO_NAME == DAUID
         """
 
         # Init temporary dataframe; set chunksize to 1'000'000 lines
@@ -37,28 +41,13 @@ class CensusDataPrep:
 
             chunk = chunk[pd.to_numeric(chunk[geoname], errors="coerce").notnull()]
             chunk[geoname] = chunk[geoname].astype(int)
-
             temp_focus_df = chunk[chunk[geoname].between(geo_range[0], geo_range[1])]
-
             frames = [temp_df, temp_focus_df]
             temp_df = pd.concat(frames)
 
-            print(f"Progress: Chunk {counter}")
+            print(f"Chunk {counter}: Lines Parsed: {len(temp_focus_df)}, Total Lines In Output File: {len(temp_df)}")
             counter += 1
 
-        # Write temporay dataframe to out_path
-        complete_outpath = f"{out_path}_{geo_type}.csv"
+        # Write temporary dataframe to out_path
+        complete_outpath = f"{out_path}/{geo_type}_CensusData2016.csv"
         temp_df.to_csv(complete_outpath, index=False)
-
-
-    #
-    #
-    #
-    #
-    #
-    #
-    # def parse_data():
-    #     pass
-    #
-    # def reorg_data():
-    #     pass
