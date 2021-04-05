@@ -50,7 +50,7 @@ class CensusDataPrep:
         a CSV. Note that only total population data will be focused on.
         """
 
-        # Import data as a pandas dataframe, drop unneeded columns
+        # Drop unneeded columns
         census_data = pd.read_csv(in_path, low_memory=False)
         col2remove = ["CENSUS_YEAR", "GEO_LEVEL", "GNR", "GNR_LF",
                       "DATA_QUALITY_FLAG",
@@ -69,48 +69,45 @@ class CensusDataPrep:
 
 
 
-    def transpose_data(in_path, out_path):
+    def transpose_data(in_path, out_path, id_type):
         """
         This class method imports a CSV containing filtered Census data (for a certain geography only), and transposes
         it and writes the cleaned data as a CSV. Data are transposed as it is not sutable for analysis or geo-visualizations
-        in its current form.
+        in its current form. Note that this function will parse all 2247 unique columns within the Census Profile.
         """
 
-        
-        tc_data = pd.read_csv(in_path)
+        # Grab names for columns; clean up, Get Unique UIDs as list from first tract observation
+        cleaned_census_data = pd.read_csv(in_path, low_memory=False)
+        for col in ["DIM: Profile of Dissemination Areas (2247)", "DIM: Profile of Census Tracts (2247)"]:
+            try:
+                unq_census_fields = list(cleaned_census_data[col][0:2247])
+            except KeyError:
+                pass
 
-        # [1.] Grab Names For Columns
-        unq_census_fields = list(tc_data["Column"][0:2247])
-
+        # Create New Column Names With Col Names Parsed; Ensure Readability
         columns_list = []
         for idx, field in enumerate(unq_census_fields):
             toreplace = [" ", "_", ",", "-", "..."]
             for char in toreplace:
                 field = field.replace(char, "")
-
             columns_list.append(str(idx + 1) + "_" + field)
 
-        # [2.] Get Unique Values DA_IDs, And Create A DA_ID Column
-        unq_da = list(tc_data["DA_ID"].unique())
 
-        # [3.] Create a List of Lists To Store Data For Each Row
+        # Grab unique rows & begin writting data to temp lists
+        unq_da = list(cleaned_census_data[id_type].unique())
         rows_list = []
         start_idx = 0
         end_idx = 2247
 
         for idx, da in enumerate(unq_da):
             idx += 1
-
-            # Increase Index To Accomodate
             if idx != 1:
                 start_idx += 2247
                 end_idx += 2247
 
-            rows_list.append(list(tc_data["Count"][start_idx:end_idx]))
+            rows_list.append(list(cleaned_census_data["Dim: Sex (3): Member ID: [1]: Total - Sex"][start_idx:end_idx]))
 
-        # [4.] Create a new DF with data
+        # Create a new DF with parsed data
         cleaned_df = pd.DataFrame(rows_list, columns = columns_list)
-
-        # [5.] First Row Needs DA_IDs
-        cleaned_df.insert(loc=0, column="DA_ID", value=unq_da)
+        cleaned_df.insert(loc=0, column=id_type, value=unq_da)
         cleaned_df.to_csv(out_path, index=False)

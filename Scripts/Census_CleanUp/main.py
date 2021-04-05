@@ -9,26 +9,32 @@ from Census_Funcs.func import *
 # Define Main Logic Of Census Data Cleaner
 def main():
 
-    # # Filter Toronto Census Tract & Dissemination Area Data From Main Census File
-    # ct_census_data_path = r"C:\Users\renac\Downloads\CT_CensusData_2016.csv"
-    # ct_filtered_data_path = r"C:\Users\renac\Downloads\FILTR_CT_CensusData_2016.csv"
-    # ct_range = (535000100, 535080202)
-    # CensusDataPrep.isolate_data(ct_census_data_path, ct_filtered_data_path, ct_range, "ALT_GEO_CODE", "CT")
-    #
-    # da_census_data_path = r"C:\Users\renac\Downloads\DA_CensusData_2016.csv"
-    # da_filtered_data_path = r"C:\Users\renac\Downloads\FILTR_DA_CensusData_2016.csv"
-    # da_range = (35200000, 35205000)
-    # CensusDataPrep.isolate_data(da_census_data_path, da_filtered_data_path, da_range, "GEO_NAME", "DA")
+    # Differences Beteen CT, DA Files
+    geo_types = ["CT", "DA"]
+    geo_ids = ["ALT_GEO_CODE", "GEO_NAME"]
+    geo_ranges = [(535000100, 535080202), (35200000, 35205000)]
+
+
+    # Filter Toronto Census Tract & Dissemination Area Data From Main Census File
+    for tract_type, id_type, geo_range in zip(geo_types, geo_ids, geo_ranges):
+        census_data_path = r"C:\Users\renac\Downloads\\" + tract_type + "_CensusData_2016.csv"
+        filtered_data_path = r"C:\Users\renac\Downloads\FILTR_" + tract_type + "_CensusData_2016.csv"
+        CensusDataPrep.isolate_data(census_data_path, filtered_data_path, geo_range, id_type, tract_type)
 
 
     # Remove Unneeded Data
-    for tract_type in ["CT", "DA"]:
+    for tract_type in geo_types:
         filtered_data_path = r"C:\Users\renac\Downloads\FILTR_" + tract_type + "_CensusData_2016.csv"
-        transpose_data_path = r"C:\Users\renac\Downloads\RMV_" + tract_type + "_CensusData_2016.csv"
-        CensusDataPrep.remove_data(filtered_data_path, transpose_data_path)
+        rm_data_path = r"C:\Users\renac\Downloads\RMV_" + tract_type + "_CensusData_2016.csv"
+        CensusDataPrep.remove_data(filtered_data_path, rm_data_path)
 
 
     # Transpose Data For Easier Data Analysis
+    for tract_type, id_type in zip(geo_types, geo_ids):
+        rm_data_path = r"C:\Users\renac\Downloads\RMV_" + tract_type + "_CensusData_2016.csv"
+        transpose_data_path = r"C:\Users\renac\Downloads\TRNSP_" + tract_type + "_CensusData_2016.csv"
+        CensusDataPrep.transpose_data(rm_data_path, transpose_data_path, id_type)
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
