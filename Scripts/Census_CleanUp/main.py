@@ -9,23 +9,30 @@ from Census_Funcs.func import *
 # Define Main Logic Of Census Data Cleaner
 def main():
 
-    try:
-        # Filter Toronto Census Tract Data From Main Census File
-        ct_census_data_path = r"C:\Users\renac\Downloads\CT_CensusData_2016.csv"
-        ct_filtered_data_path = r"C:\Users\renac\Documents\Programming\Python\IntervalHouse_DataAnalytics\Data\CensusData\CensusToronto_CT_2016"
-        ct_range = (535000100, 535080202)
-        CensusDataPrep.isolate_data(ct_census_data_path, ct_filtered_data_path, ct_range, "ALT_GEO_CODE", "CT")
-    except FileNotFoundError:
-        print("CT File Not Found")
+    # # Filter Toronto Census Tract & Dissemination Area Data From Main Census File
+    # try:
+    #
+    #     ct_census_data_path = r"C:\Users\renac\Downloads\CT_CensusData_2016.csv"
+    #     ct_filtered_data_path = r"C:\Users\renac\Downloads\FILTR_CT_CensusData_2016.csv"
+    #     ct_range = (535000100, 535080202)
+    #     CensusDataPrep.isolate_data(ct_census_data_path, ct_filtered_data_path, ct_range, "ALT_GEO_CODE", "CT")
+    # except FileNotFoundError:
+    #     pass
+    #
+    # try:
+    #     da_census_data_path = r"C:\Users\renac\Downloads\DA_CensusData_2016.csv"
+    #     da_filtered_data_path = r"C:\Users\renac\Downloads\FILTR_DA_CensusData_2016.csv"
+    #     da_range = (35200000, 35205000)
+    #     CensusDataPrep.isolate_data(da_census_data_path, da_filtered_data_path, da_range, "GEO_NAME", "DA")
+    # except FileNotFoundError:
+    #     pass
 
-    try:
-        # Filter Toronto Dissemination Area Data From Main Census File
-        da_census_data_path = r"C:\Users\renac\Downloads\DA_CensusData_2016.csv"
-        da_filtered_data_path = r"C:\Users\renac\Documents\Programming\Python\IntervalHouse_DataAnalytics\Data\CensusData\CensusToronto_DA_2016"
-        da_range = (35200000, 35205000)
-        CensusDataPrep.isolate_data(da_census_data_path, da_filtered_data_path, da_range, "GEO_NAME", "DA")
-    except FileNotFoundError:
-        print("DA File Not Found")
+
+    # Remove Unneeded Data & transpose Data For Easier Data Analysis
+    for tract_type in ["CT", "DA"]:
+        filtered_data_path = r"C:\Users\renac\Downloads\FILTR_" + tract_type + "_CensusData_2016.csv"
+        transpose_data_path = r"C:\Users\renac\Downloads\RMV_" + tract_type + "_CensusData_2016.csv"
+        CensusDataPrep.remove_data(filtered_data_path, transpose_data_path)
 
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
