@@ -3,7 +3,9 @@
 # Title                   Interval House Data Analytics Project: Canadian Census Data Parsing
 #
 # ----------------------------------------------------------------------------------------------------------------------
+import numpy as np
 import pandas as pd
+import geopandas as gpd
 # ----------------------------------------------------------------------------------------------------------------------
 
 
@@ -111,3 +113,47 @@ class CensusDataPrep:
         cleaned_df = pd.DataFrame(rows_list, columns = columns_list)
         cleaned_df.insert(loc=0, column=id_type, value=unq_da)
         cleaned_df.to_csv(out_path, index=False)
+
+
+
+    def create_shp(in_path, in_empty_shp, out_csv, out_path, id_type):
+        """
+        This class method imports a cleaned, filtered and properly transposed CSV containing Census data for the
+        City Of Toronto. The data will be joined to an awaiting shapefile according to an appropriate GEO ID. Note that
+        CTUID == ALT_GEO_CODE
+        DAUID == GEO_NAME
+        """
+
+        geo_dict = {"ALT_GEO_CODE": "CTUID", "GEO_NAME": "DAUID"}
+
+        # Init CSV, and Shapefile as appropriate dataframes, and make sure files have the same column name
+        cleaned_census_data = pd.read_csv(in_path, low_memory=False)
+        empty_shapefile = gpd.read_file(in_empty_shp)
+        for geo_type in geo_dict:
+            try:
+                cleaned_census_data = cleaned_census_data.rename(columns={geo_type: geo_dict[geo_type]})
+                cleaned_census_data[geo_dict[geo_type]] = cleaned_census_data[geo_dict[geo_type]].astype(float)
+                empty_shapefile[geo_dict[geo_type]] = empty_shapefile[geo_dict[geo_type]].astype(float)
+
+            except KeyError:
+                pass
+
+        # CT, And DA Columns Need Different Formating
+        if id_type == "ALT_GEO_CODE":
+            cleaned_census_data[geo_dict[id_type]] = cleaned_census_data[geo_dict[id_type]] / 100
+        elif id_type == "GEO_NAME":
+            pass ##TODO
+        else:
+            pass
+
+        # Convert Both Columns To Same Type | Rename Columns In Census To Be Shorter
+        cleaned_census_data[geo_dict[id_type]] = cleaned_census_data[geo_dict[id_type]].astype(str)
+        empty_shapefile[geo_dict[id_type]] = empty_shapefile[geo_dict[id_type]].astype(str)
+        for col_name in cleaned_census_data.columns:
+            if "_" in col_name:
+                split_col = col_name.split("_")
+                cleaned_census_data = cleaned_census_data.rename(columns={col_name: str(split_col[0])})
+
+        # Export
+        cleaned_census_data.to_csv(out_csv, index=False)
+        empty_shapefile.to_file(out_path)
