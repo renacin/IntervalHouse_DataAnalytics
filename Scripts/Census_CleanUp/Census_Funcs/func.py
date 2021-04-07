@@ -165,9 +165,16 @@ class CensusDataPrep:
         City Of Toronto and returns a specified subset.
         """
 
-        geo_dict = {"ALT_GEO_CODE": "CTUID", "GEO_NAME": "DAUID"}
-        new_data_df
+        geo_dict = {"CT": "CTUID", "DA": "DAUID"}
 
-        # Import
+        # Import Census Data And Create Selection Via User Input
         cleaned_census_data = pd.read_csv(in_path, low_memory=False)
-        print(cleaned_census_data.info())
+        col_range = [x for x in range(data_range[0], data_range[1] + 1)]
+        selection = cleaned_census_data.iloc[:, col_range]
+
+        # Move Geo_ID Infront Of Slection Dataframe
+        geo_col = cleaned_census_data[geo_dict[id_type]].tolist()
+        selection.insert(0, geo_dict[id_type], geo_col, True)
+
+        # Export
+        selection.to_csv(out_path, index=False)
