@@ -3,9 +3,7 @@
 # Title                   Interval House Data Analytics Project: Canadian Census Data Parsing
 #
 # ----------------------------------------------------------------------------------------------------------------------
-import numpy as np
 import pandas as pd
-import geopandas as gpd
 # ----------------------------------------------------------------------------------------------------------------------
 
 
@@ -116,44 +114,60 @@ class CensusDataPrep:
 
 
 
-    def create_shp(in_path, in_empty_shp, out_csv, out_path, id_type):
+    def altr_for_shp(in_path, out_path, id_type):
         """
         This class method imports a cleaned, filtered and properly transposed CSV containing Census data for the
-        City Of Toronto. The data will be joined to an awaiting shapefile according to an appropriate GEO ID. Note that
+        City Of Toronto. The data will be altered to best fit a related boundary shapefile. Note that
         CTUID == ALT_GEO_CODE
         DAUID == GEO_NAME
         """
 
         geo_dict = {"ALT_GEO_CODE": "CTUID", "GEO_NAME": "DAUID"}
 
-        # Init CSV, and Shapefile as appropriate dataframes, and make sure files have the same column name
+        # Init CSV as appropriate dataframes, and make sure files have the same column name
         cleaned_census_data = pd.read_csv(in_path, low_memory=False)
-        empty_shapefile = gpd.read_file(in_empty_shp)
         for geo_type in geo_dict:
             try:
                 cleaned_census_data = cleaned_census_data.rename(columns={geo_type: geo_dict[geo_type]})
                 cleaned_census_data[geo_dict[geo_type]] = cleaned_census_data[geo_dict[geo_type]].astype(float)
-                empty_shapefile[geo_dict[geo_type]] = empty_shapefile[geo_dict[geo_type]].astype(float)
-
             except KeyError:
                 pass
 
-        # CT, And DA Columns Need Different Formating
+        # CT, And DA Columns Need Different Formating | CT Needs Two Dec Points
         if id_type == "ALT_GEO_CODE":
             cleaned_census_data[geo_dict[id_type]] = cleaned_census_data[geo_dict[id_type]] / 100
-        elif id_type == "GEO_NAME":
-            pass ##TODO
+            temp_list = cleaned_census_data[geo_dict[id_type]].tolist()
+            cleaned_census_data[geo_dict[id_type]] = [str(format(round(x, 2), ".2f")) for x in temp_list]
         else:
             pass
 
-        # Convert Both Columns To Same Type | Rename Columns In Census To Be Shorter
-        cleaned_census_data[geo_dict[id_type]] = cleaned_census_data[geo_dict[id_type]].astype(str)
-        empty_shapefile[geo_dict[id_type]] = empty_shapefile[geo_dict[id_type]].astype(str)
-        for col_name in cleaned_census_data.columns:
+        # Rename Columns In Census To Be Shorter
+        org_col_names = cleaned_census_data.columns
+        new_col_names = []
+        for col_name in org_col_names:
             if "_" in col_name:
                 split_col = col_name.split("_")
-                cleaned_census_data = cleaned_census_data.rename(columns={col_name: str(split_col[0])})
+                new_col_names.append(split_col[0])
+            else:
+                new_col_names.append(col_name)
+
+        new_col_name_dict = {x:y for x, y in zip(org_col_names, new_col_names)}
+        cleaned_census_data = cleaned_census_data.rename(columns=new_col_name_dict)
 
         # Export
-        cleaned_census_data.to_csv(out_csv, index=False)
-        empty_shapefile.to_file(out_path)
+        cleaned_census_data.to_csv(out_path, index=False)
+
+
+
+    def specifc_columns(in_path, out_path, id_type, data_range):
+        """
+        This class method imports a cleaned, filtered and properly transposed CSV containing Census data for the
+        City Of Toronto and returns a specified subset.
+        """
+
+        geo_dict = {"ALT_GEO_CODE": "CTUID", "GEO_NAME": "DAUID"}
+        new_data_df
+
+        # Import
+        cleaned_census_data = pd.read_csv(in_path, low_memory=False)
+        print(cleaned_census_data.info())
