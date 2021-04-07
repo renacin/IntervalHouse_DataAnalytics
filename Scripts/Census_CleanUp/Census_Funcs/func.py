@@ -162,7 +162,8 @@ class CensusDataPrep:
     def specifc_columns(in_path, out_path, id_type, data_range):
         """
         This class method imports a cleaned, filtered and properly transposed CSV containing Census data for the
-        City Of Toronto and returns a specified subset.
+        City Of Toronto and returns a specified subset. This class method will also remove non-numeric values from the
+        entire selection, and will format columns accordingly.
         """
 
         geo_dict = {"CT": "CTUID", "DA": "DAUID"}
@@ -171,6 +172,10 @@ class CensusDataPrep:
         cleaned_census_data = pd.read_csv(in_path, low_memory=False)
         col_range = [x for x in range(data_range[0], data_range[1] + 1)]
         selection = cleaned_census_data.iloc[:, col_range]
+
+        # Remove Non-Numeric Values
+        for col in selection.columns:
+            selection[col] = pd.to_numeric(selection[col], errors='coerce')
 
         # Move Geo_ID Infront Of Slection Dataframe
         geo_col = cleaned_census_data[geo_dict[id_type]].tolist()

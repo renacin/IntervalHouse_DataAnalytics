@@ -124,10 +124,10 @@ The following is a list of graphics, and datasets will be created:
 
 Name  | Data Type | Sensitivity | Notes | Progress | Date Completed
 |:---|---:|:---:|:---|---:|---:|
-Base Map Style | Graphic (PDF) | Public | Create a base map that will set the Color & Style for subsequent maps                        | :heavy_multiplication_x: | N/A
-Client Observation Choropleth Map | Graphic (PDF) | Public | Create For Both CT & DA                                                   | :heavy_multiplication_x: | N/A
-Client Observation Dot Map | Graphic (PDF) | Private | Overlay On Base Map; Distance To Interval House (Average & Standard Dev)        | :heavy_multiplication_x: | N/A
-Client Map & Cases Of COVID-19 | Graphic (PDF) | Public | Does Spatial Mismatch Influence Graphic?                                     | :heavy_multiplication_x: | N/A
+Base Map Style | Graphic (PDF) | Private | Create a base map that will set the Color & Style for subsequent maps                        | :heavy_multiplication_x: | N/A
+Client Observation Choropleth Map | Graphic (PDF) | Private | Create For Both CT & DA                                                   | :heavy_multiplication_x: | N/A
+Client Observation Dot Map | Graphic (PDF) | Private | Overlay On Base Map; Distance To Interval House (Average & Standard Dev)         | :heavy_multiplication_x: | N/A
+Client Map & Cases Of COVID-19 | Graphic (PDF) | Private | Does Spatial Mismatch Influence Graphic?                                     | :heavy_multiplication_x: | N/A
 
 <br />
 
