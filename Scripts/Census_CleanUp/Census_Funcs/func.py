@@ -173,9 +173,12 @@ class CensusDataPrep:
         col_range = [x for x in range(data_range[0], data_range[1] + 1)]
         selection = cleaned_census_data.iloc[:, col_range]
 
-        # Remove Non-Numeric Values
+        # Remove Non-Numeric Values | Fill With Average Value For That Column
         for col in selection.columns:
             selection[col] = pd.to_numeric(selection[col], errors='coerce')
+            col_mean = int(selection[col].mean())
+            selection[col] = selection[col].fillna(col_mean)
+
 
         # Move Geo_ID Infront Of Slection Dataframe
         geo_col = cleaned_census_data[geo_dict[id_type]].tolist()
