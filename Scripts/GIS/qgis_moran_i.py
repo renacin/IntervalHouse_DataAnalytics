@@ -128,15 +128,14 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
             context
         )
 
-        # Give user feedback | Introduce algorithm & first step | And check if user wants to cancel
-        feedback.pushInfo("This algorithm will calculate Moran's I statistic for each field within the provided data layer.\n")
 
-
-        # Step 1: Ensure number of polygons matches up with number of number of rows in user defined UID field
+        # Step 1: Grab user defined UID field
         if feedback.isCanceled():
             return {}
         features = source.getFeatures()
-        user_uids = [f[uid_field] for f in features]
+        user_uids = set(f[uid_field] for f in features)
+        num_features = source.featureCount()
+        feedback.pushInfo("Sucessfully parsed user defined UIDs: Num UIDs {}, Num Features {}".format(len(user_uids), num_features))
 
 
         # Step 2): Create dataframe index, and columns are the unique identifiers
@@ -146,34 +145,56 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
         df = pd.DataFrame(dist_matrix)
         df[uid_field] = user_uids
         df.insert(0, uid_field, user_uids, True)
+        feedback.pushInfo("Sucessfully created distance matrix")
 
 
-
-
-        out_path = r"C:\Users\renac\Downloads\TESTDATA.csv"
-        df.to_csv(out_path, index=False)
-
-
-
-        # Step 2): Create Centroid Representation For Distance Calculation
+        # Step 3): Create centroid representation for distance calculation
         if feedback.isCanceled():
             return {}
-
-        feedback.pushInfo("(Step 1): Creating Centroid Representation Of Polygon Layer.")
-
-        # centroid_layer = processing.run("native:centroids",
-        #     {
-        #         'INPUT': parameters['INPUT'],
-        #     },
-        #     is_child_algorithm=True,
-        #     context=context,
-        #     feedback=feedback
-        # )
-
-        # Step 2): Create Centroid Representation For Distance Calculation
+        centroid_layer = processing.run("native:centroids",
+            {
+                'INPUT': parameters['INPUT'],
+                'OUTPUT': outputFile
+            },
+            is_child_algorithm=True,
+            context=context,
+            feedback=feedback
+        )
+        feedback.pushInfo("Sucessfully created centroid representation of polygon layer")
 
 
-        return {}
+        # Step 4): Create distance matrix between each points
+        if feedback.isCanceled():
+            return {}
+        centroid_layer = processing.run("qgis:distancematrix",
+            {
+                'INPUT': parameters['INPUT'],
+                'OUTPUT': outputFile
+            },
+            is_child_algorithm=True,
+            context=context,
+            feedback=feedback
+        )
+        feedback.pushInfo("Sucessfully created centroid representation of polygon layer")
+
+        # Step 4): Iterate through each feature, calculate distance between each other point
+        data_all = []
+        for feature in outputFile.getFeatures():
+            print(feature["CTUID"])
+            # temp_list = []
+            # for attr in feature:
+            #     temp_list.append(attr)
+            # data_all.append(temp_list)
+
+
+
+        # path = r"C:\Users\renac\Desktop\DEBUG.txt"
+        # file1 = open(path,"w")
+        # file1.write(data_all)
+        # file1.close()
+
+
+        return {} #self.OUTPUT : centroid_layer
 
 
 
