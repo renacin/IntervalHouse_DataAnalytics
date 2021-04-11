@@ -4,14 +4,14 @@
 #
 # ----------------------------------------------------------------------------------------------------------------------
 import pandas as pd
+import numpy as np
+import time
 
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,
-                       QgsFeatureSink,
-                       QgsProcessingException,
-                       QgsProcessingAlgorithm,
-                       QgsProcessingParameterFeatureSource,
-                       QgsProcessingParameterFeatureSink)
+from qgis.core import (QgsProcessing, QgsProcessingParameterVectorDestination, QgsProcessingException,
+                       QgsProcessingAlgorithm, QgsProcessingParameterFeatureSource, QgsProcessingParameterField,
+                       QgsField, QgsFields)
+
 from qgis import processing
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -24,8 +24,9 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
     """
 
     # Constants used to refer to parameters and outputs.
-    INPUT = 'INPUT'
-    OUTPUT = 'OUTPUT'
+    INPUT = "INPUT"
+    UID_FIELD = "UID_FIELD"
+    OUTPUT = "OUTPUT"
 
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -82,17 +83,25 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
             QgsProcessingParameterFeatureSource(
                 self.INPUT,
                 self.tr("Input Layer:"),
-                [QgsProcessing.TypeVectorAnyGeometry]
+                [QgsProcessing.TypeVectorPolygon]
             )
         )
 
-        # # Output will be a feature sink for now: CHANGE TO TABLE | CSV!!!
-        # self.addParameter(
-        #     QgsProcessingParameterFeatureSink(
-        #         self.OUTPUT,
-        #         self.tr("Output Layer:")
-        #     )
-        # )
+        # Ask user for field that will uniquely identify polygons
+        self.addParameter(
+            QgsProcessingParameterField(
+                self.UID_FIELD,
+                "Choose Field That IDs Polygons",
+                "",
+                self.INPUT))
+
+        # Output will be a vector destination for now: CHANGE TO TABLE | CSV!!!
+        self.addParameter(
+            QgsProcessingParameterVectorDestination(
+                self.OUTPUT,
+                self.tr("Output Layer:")
+            )
+        )
 
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -101,10 +110,70 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
     def processAlgorithm(self, parameters, context, feedback):
         """ Here is where the processing itself takes place. """
 
+        # Define input/output file that will store/provide data | Can be in memory or a file depending on user
+        source = self.parameterAsSource(
+            parameters,
+            self.INPUT,
+            context
+        )
+
+        uid_field = self.parameterAsString(
+                parameters,
+                self.UID_FIELD,
+                context)
+
+        outputFile = self.parameterAsOutputLayer(
+            parameters,
+            self.OUTPUT,
+            context
+        )
+
+        # Give user feedback | Introduce algorithm & first step | And check if user wants to cancel
+        feedback.pushInfo("This algorithm will calculate Moran's I statistic for each field within the provided data layer.\n")
+
+
+        # Step 1: Ensure number of polygons matches up with number of number of rows in user defined UID field
+        if feedback.isCanceled():
+            return {}
+        features = source.getFeatures()
+        user_uids = [f[uid_field] for f in features]
+
+
+        # Step 2): Create dataframe index, and columns are the unique identifiers
+        if feedback.isCanceled():
+            return {}
+        dist_matrix = {id:[0]*len(user_uids) for id in user_uids}
+        df = pd.DataFrame(dist_matrix)
+        df[uid_field] = user_uids
+        df.insert(0, uid_field, user_uids, True)
 
 
 
-        return None
+
+        out_path = r"C:\Users\renac\Downloads\TESTDATA.csv"
+        df.to_csv(out_path, index=False)
+
+
+
+        # Step 2): Create Centroid Representation For Distance Calculation
+        if feedback.isCanceled():
+            return {}
+
+        feedback.pushInfo("(Step 1): Creating Centroid Representation Of Polygon Layer.")
+
+        # centroid_layer = processing.run("native:centroids",
+        #     {
+        #         'INPUT': parameters['INPUT'],
+        #     },
+        #     is_child_algorithm=True,
+        #     context=context,
+        #     feedback=feedback
+        # )
+
+        # Step 2): Create Centroid Representation For Distance Calculation
+
+
+        return {}
 
 
 
@@ -114,4 +183,6 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
 For Help See:
     + https://www.qgistutorials.com/id/docs/3/processing_python_scripts.html
     + https://www.youtube.com/watch?v=kkrqnj-iUHM
+    + https://anitagraser.com/pyqgis-101-introduction-to-qgis-python-programming-for-non-programmers/pyqgis-101-writing-a-processing-script/
+    + https://anitagraser.com/2018/03/25/processing-script-template-for-qgis3/
 """
