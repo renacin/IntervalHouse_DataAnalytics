@@ -95,13 +95,13 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
                 "",
                 self.INPUT))
 
-        # Output will be a vector destination for now: CHANGE TO TABLE | CSV!!!
-        self.addParameter(
-            QgsProcessingParameterVectorDestination(
-                self.OUTPUT,
-                self.tr("Output Layer:")
-            )
-        )
+        # # Output will be a vector destination for now: CHANGE TO TABLE | CSV!!!
+        # self.addParameter(
+        #     QgsProcessingParameterVectorDestination(
+        #         self.OUTPUT,
+        #         self.tr("Output Layer:")
+        #     )
+        # )
 
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -122,11 +122,11 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
                 self.UID_FIELD,
                 context)
 
-        outputFile = self.parameterAsOutputLayer(
-            parameters,
-            self.OUTPUT,
-            context
-        )
+        # outputFile = self.parameterAsOutputLayer(
+        #     parameters,
+        #     self.OUTPUT,
+        #     context
+        # )
 
 
         # Step 1: Grab user defined UID field
@@ -153,8 +153,8 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
             return {}
         centroid_layer = processing.run("native:centroids",
             {
-                'INPUT': parameters['INPUT'],
-                'OUTPUT': outputFile
+                "INPUT": parameters["INPUT"],
+                "OUTPUT": 'memory:'
             },
             is_child_algorithm=True,
             context=context,
@@ -166,37 +166,23 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
         # Step 4): Create distance matrix between each points
         if feedback.isCanceled():
             return {}
-        centroid_layer = processing.run("qgis:distancematrix",
+        distance_matrix = processing.run("qgis:distancematrix",
             {
-                'INPUT': parameters['INPUT'],
-                'OUTPUT': outputFile
+                "INPUT": centroid_layer,
+                "INPUT_FIELD": uid_field,
+                "TARGET": centroid_layer,
+                "TARGET_FIELD": uid_field,
+                "MATRIX_TYPE": 0,
+                "OUTPUT": 'memory:'
             },
             is_child_algorithm=True,
             context=context,
             feedback=feedback
         )
-        feedback.pushInfo("Sucessfully created centroid representation of polygon layer")
-
-        # Step 4): Iterate through each feature, calculate distance between each other point
-        data_all = []
-        for feature in outputFile.getFeatures():
-            print(feature["CTUID"])
-            # temp_list = []
-            # for attr in feature:
-            #     temp_list.append(attr)
-            # data_all.append(temp_list)
-
-
-
-        # path = r"C:\Users\renac\Desktop\DEBUG.txt"
-        # file1 = open(path,"w")
-        # file1.write(data_all)
-        # file1.close()
+        feedback.pushInfo("Sucessfully calculated distance matrix")
 
 
         return {} #self.OUTPUT : centroid_layer
-
-
 
 
 
