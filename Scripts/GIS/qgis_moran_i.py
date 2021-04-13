@@ -138,32 +138,19 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
         feedback.pushInfo("Sucessfully parsed user defined UIDs: Num UIDs {}, Num Features {}".format(len(user_uids), num_features))
 
 
-        # Step 2): Create dataframe index, and columns are the unique identifiers
-        if feedback.isCanceled():
-            return {}
-        dist_matrix = {id:[0]*len(user_uids) for id in user_uids}
-        df = pd.DataFrame(dist_matrix)
-        df[uid_field] = user_uids
-        df.insert(0, uid_field, user_uids, True)
-        feedback.pushInfo("Sucessfully created distance matrix")
-
-
-        # Step 3): Create centroid representation for distance calculation
+        # Step 2): Create centroid representation for distance calculation
         if feedback.isCanceled():
             return {}
         centroid_layer = processing.run("native:centroids",
             {
                 "INPUT": parameters["INPUT"],
                 "OUTPUT": 'memory:'
-            },
-            is_child_algorithm=True,
-            context=context,
-            feedback=feedback
-        )
+            }
+        )['OUTPUT']
         feedback.pushInfo("Sucessfully created centroid representation of polygon layer")
 
 
-        # Step 4): Create distance matrix between each points
+        # Step 3): Create distance matrix between each points
         if feedback.isCanceled():
             return {}
         distance_matrix = processing.run("qgis:distancematrix",
@@ -174,15 +161,24 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
                 "TARGET_FIELD": uid_field,
                 "MATRIX_TYPE": 0,
                 "OUTPUT": 'memory:'
-            },
-            is_child_algorithm=True,
-            context=context,
-            feedback=feedback
-        )
+            }
+        )['OUTPUT']
         feedback.pushInfo("Sucessfully calculated distance matrix")
 
 
-        return {} #self.OUTPUT : centroid_layer
+        # Step 4): Grab data from shapefile and append to pandas dataframe
+        data_dump = {"InputID": [], "TargetID": [], "Distance": []}
+        for feature in distance_matrix.getFeatures():
+            data_dump["InputID"].append(feature["InputID"])
+            data_dump["TargetID"].append(feature["TargetID"])
+            data_dump["Distance"].append(feature["Distance"])
+
+        df = pd.DataFrame(data_dump)
+        path = r"C:\Users\renac\Downloads\DistanceMatrix.csv"
+        df.to_csv(path, index=False)
+        feedback.pushInfo("Sucessfully wrote distance matrix")
+
+        return {}
 
 
 
