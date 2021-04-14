@@ -173,6 +173,12 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
             data_dump["TargetID"].append(feature["TargetID"])
             data_dump["Distance"].append(feature["Distance"])
 
+
+        # Step 5): Calculate the inverse distance and append as a column, and pull needed information for Moran's I calculation
+        df["InverseDistance"] = 1 / df["Distance"]
+        n = num_features
+        w_ij = df["InverseDistance"].sum()
+
         df = pd.DataFrame(data_dump)
         path = r"C:\Users\renac\Downloads\DistanceMatrix.csv"
         df.to_csv(path, index=False)
