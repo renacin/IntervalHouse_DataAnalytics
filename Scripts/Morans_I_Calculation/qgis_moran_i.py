@@ -8,7 +8,7 @@ import numpy as np
 import time
 
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing, QgsProcessingParameterVectorDestination, QgsProcessingException,
+from qgis.core import (QgsProcessing, QgsProcessingParameterFolderDestination, QgsProcessingException,
                        QgsProcessingAlgorithm, QgsProcessingParameterFeatureSource, QgsProcessingParameterField,
                        QgsField, QgsFields)
 
@@ -26,7 +26,7 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
     # Constants used to refer to parameters and outputs.
     INPUT = "INPUT"
     UID_FIELD = "UID_FIELD"
-    OUTPUT = "OUTPUT"
+    FOLDER_PATH = "FOLDER_PATH"
 
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -95,13 +95,13 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
                 "",
                 self.INPUT))
 
-        # # Output will be a vector destination for now: CHANGE TO TABLE | CSV!!!
-        # self.addParameter(
-        #     QgsProcessingParameterVectorDestination(
-        #         self.OUTPUT,
-        #         self.tr("Output Layer:")
-        #     )
-        # )
+        # Select folder where CSV will be written
+        self.addParameter(
+            QgsProcessingParameterFolderDestination(
+                self.FOLDER_PATH,
+                self.tr("Output Folder:")
+            )
+        )
 
 
     # ------------------------------------------------------------------------------------------------------------------
@@ -118,15 +118,15 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
         )
 
         uid_field = self.parameterAsString(
-                parameters,
-                self.UID_FIELD,
-                context)
+            parameters,
+            self.UID_FIELD,
+            context)
 
-        # outputFile = self.parameterAsOutputLayer(
-        #     parameters,
-        #     self.OUTPUT,
-        #     context
-        # )
+        output_folder = self.parameterAsString(
+            parameters,
+            self.FOLDER_PATH,
+            context
+        )
 
 
         # Step 1: Grab user defined UID field
@@ -175,14 +175,24 @@ class Morans_I_Calculator(QgsProcessingAlgorithm):
 
 
         # Step 5): Calculate the inverse distance and append as a column, and pull needed information for Moran's I calculation
+        df = pd.DataFrame(data_dump)
         df["InverseDistance"] = 1 / df["Distance"]
         n = num_features
         w_ij = df["InverseDistance"].sum()
 
-        df = pd.DataFrame(data_dump)
+
+
+        # Writting data to final location depends on where/how the user wants data written
+        if "Local/Temp" in output_folder:
+            feedback.pushInfo("Temporary Folder: {}".format(output_folder))
+
+        else:
+            feedback.pushInfo("Folder On Drive: {}".format(output_folder))
+
         path = r"C:\Users\renac\Downloads\DistanceMatrix.csv"
         df.to_csv(path, index=False)
         feedback.pushInfo("Sucessfully wrote distance matrix")
+
 
         return {}
 
