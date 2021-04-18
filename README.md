@@ -35,7 +35,7 @@ terms of size, as well as pioneering different services that can better help ind
 
 Data analytics are yet another area that Interval House would like to explore in its constant push to better help its clients.
 
-This project follows an explorative analysis of Interval House data in an attempt to identify, and better serve
+This project follows an explorative analysis of Interval House BESS data in an attempt to identify, and better serve
 areas of need in their present/future client list.
 
 _*This project is explorative and informal in nature; this repository will help track research and discoveries from pertinent datasets._
@@ -124,6 +124,7 @@ The following is a list of graphics, and datasets will be created:
 
 Name  | Data Type | Sensitivity | Notes | Progress | Date Completed
 |:---|---:|:---:|:---|---:|---:|
+Census Dictionary (With Applicable Variable Set) | CSV | Public | Which variables are helpful in our analysis                           | :heavy_check_mark:       | 2021/04/18
 Base Map Style | Graphic (PDF) | Private | Create a base map that will set the Color & Style for subsequent maps                        | :heavy_multiplication_x: | N/A
 Client Observation Choropleth Map | Graphic (PDF) | Private | Create For Both CT & DA                                                   | :heavy_multiplication_x: | N/A
 Client Observation Dot Map | Graphic (PDF) | Private | Overlay On Base Map; Distance To Interval House (Average & Standard Dev)         | :heavy_multiplication_x: | N/A
