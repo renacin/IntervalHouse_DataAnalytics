@@ -9,7 +9,16 @@ from Funcs.func import *
 # Define Main Logic Of K-Means Clustering Attempt
 def main():
 
-    # 
+    # Filter Only Income Data Fields For Now
+    focus_rows = ["S_CTUID", "52"]
+    raw_data_path = r"C:\Users\renac\Documents\Programming\Python\IntervalHouse_DataAnalytics\Scripts\K_Means_Clustering\Data\Census_CleanedData.csv"
+    df = DataPrep.filter_data(raw_data_path, focus_rows)
+
+    # Normalize Data
+    df_scaled = DataPrep.max_norm(df, "S_CTUID")
+
+    # Perform K-Means Analysis
+    K_Means.elbow_chart(df_scaled)
 
 
 
