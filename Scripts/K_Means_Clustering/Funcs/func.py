@@ -55,19 +55,15 @@ class K_Means:
     """ Conduct K-Means Clustering Of Data """
 
 
-    def plot_data(df: "Pandas Dataframe", data_col: list):
-
-        plt.plot()
-        plt.scatter(df[data_col[1]], df[data_col[0]])
-        plt.xlabel(data_col[1])
-        plt.ylabel(data_col[0])
-        plt.show()
-
-
-    def elbow_chart(df: "Pandas Dataframe"):
+    def elbow_chart(df: "Pandas Dataframe", drop_col: list):
+        """
+        Run K number of K-Means analyses to identify optimal K value. Plot distortions
+        via a simple line chart for user.
+        """
 
         # Drop Unneeded Columns
-        df.drop(["S_CTUID"], axis=1, inplace=True)
+        for col in drop_col:
+            df.drop([col], axis=1, inplace=True)
 
         # Create New Plot For Data
         plt.plot()
@@ -77,7 +73,7 @@ class K_Means:
         distortions = []
         K = range(1, 15)
         for k in K:
-            kmeanModel = KMeans(n_clusters=k).fit(X)
+            kmeanModel = KMeans(n_clusters=k, max_iter=150)
             kmeanModel.fit(X)
             distortions.append(sum(np.min(cdist(X, kmeanModel.cluster_centers_, "euclidean"), axis=1)) / X.shape[0])
 
@@ -87,6 +83,27 @@ class K_Means:
         plt.ylabel("Overall Distortion (WCSSE)")
         plt.title("Elbow Chart: Finding Optimal K-Value")
         plt.show()
+
+
+    def clustering(df: "Pandas Dataframe", k : "Number Of Clusters", drop_col: list):
+        """
+        Run K number of K-Means analyses to identify optimal K value. Plot distortions
+        via a simple line chart for user.
+        """
+
+        # Drop Unneeded Columns
+        for col in drop_col:
+            df.drop([col], axis=1, inplace=True)
+
+        # Dataframe To Numpy Array For Clustering
+        X = df.to_numpy()
+
+        # Perform K-Means Analysis
+        kmeanModel = KMeans(n_clusters=k, max_iter=150)
+        kmeanModel.fit(X)
+
+        # Return Cluster Membership & Centroid Locations
+        return [kmeanModel.cluster_centers_, kmeanModel.labels_]
 
 
     
