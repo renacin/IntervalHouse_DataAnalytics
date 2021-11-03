@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn import metrics
 from scipy.spatial.distance import cdist
+from scipy.cluster.hierarchy import dendrogram, linkage
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -51,15 +52,18 @@ class DataPrep:
 
 
 
-class K_Means:
+class Clustering:
     """ Conduct K-Means Clustering Of Data """
 
 
-    def elbow_chart(df: "Pandas Dataframe", drop_col: list):
+    def Elbow_chart(df_raw: "Pandas Dataframe", drop_col: list):
         """
         Run K number of K-Means analyses to identify optimal K value. Plot distortions
         via a simple line chart for user.
         """
+
+        # Make Copy Just Incase
+        df = df_raw.copy()
 
         # Drop Unneeded Columns
         for col in drop_col:
@@ -85,7 +89,35 @@ class K_Means:
         plt.show()
 
 
-    def clustering(df: "Pandas Dataframe", k : "Number Of Clusters", drop_col: list):
+    def Dendrogram(df_raw: "Pandas Dataframe", drop_col: list):
+        """
+        Create a dendrogram to help the user identify the optimal number of clusters for thier clustering attempt
+        """
+
+        # Make Copy Just Incase
+        df = df_raw.copy()
+
+        # Drop Unneeded Columns
+        for col in drop_col:
+            df.drop([col], axis=1, inplace=True)
+
+        # Find Distance Between Values
+        Z = linkage(df, 'ward')
+
+        # Plot The Dendrogram
+        plt.plot()
+        plt.xlabel("Clusters")
+        plt.ylabel("Distance (Ward)")
+
+        # Make the dendrogram | Do not render x-axis, too many labels
+        dendrogram(Z, labels=df.index, leaf_rotation=90)
+        ax = plt.gca()
+        ax.get_xaxis().set_visible(False)
+        plt.show()
+
+
+
+    def K_Means(df: "Pandas Dataframe", k : "Number Of Clusters", drop_col: list):
         """
         Run K number of K-Means analyses to identify optimal K value. Plot distortions
         via a simple line chart for user.

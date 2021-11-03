@@ -18,12 +18,12 @@ def main():
     df_scaled = DataPrep.max_norm(df, "S_CTUID")
 
     # Determine Optimal Number Of Clusters
-    # K_Means.elbow_chart(df_scaled, ["S_CTUID"])
+    Clustering.Elbow_chart(df_scaled, ["S_CTUID"])
+    Clustering.Dendrogram(df_scaled, ["S_CTUID"])
+
 
     # Perform K Means Analysis & Determine Cluster Memberships
-    centroids, labels = K_Means.clustering(df_scaled, 7, ["S_CTUID"])
-
-    print(labels)
+    # centroids, labels = Clustering.K_Means(df_scaled, 7, ["S_CTUID"])
 
 
 
