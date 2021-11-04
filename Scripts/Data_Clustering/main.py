@@ -10,20 +10,24 @@ from Funcs.func import *
 def main():
 
     # Filter Only Income Data Fields For Now
-    focus_rows = ["S_CTUID", "8", "18", "19", "22", "24", "26", "38", "42", "51"]
-    raw_data_path = r"C:\Users\renac\Documents\Programming\Python\IntervalHouse_DataAnalytics\Scripts\K_Means_Clustering\Data\Census_CleanedData.csv"
+    focus_rows = []
+    raw_data_path = r"C:\Users\renac\Documents\Programming\Python\IntervalHouse_DataAnalytics\Scripts\Data_Clustering\Data\Flower_IRIS_Data.csv"
     df = DataPrep.filter_data(raw_data_path, focus_rows)
 
     # Normalize Data
-    df_scaled = DataPrep.max_norm(df, "S_CTUID")
+    df_scaled = DataPrep.max_norm(df, "species")
 
-    # Determine Optimal Number Of Clusters
-    Clustering.Elbow_chart(df_scaled, ["S_CTUID"])
-    Clustering.Silhouette_chart(df_scaled, ["S_CTUID"])
+    # For Debugging
+    print(df_scaled.info())
+    print(df_scaled.head())
 
+    # # Determine Optimal Number Of Clusters
+    # Clustering.Elbow_chart(df_scaled, ["species"])
+    # Clustering.Silhouette_chart(df_scaled, ["species"])
+    # Clustering.Dendrogram(df_scaled, ["species"])
 
     # # Perform K Means Analysis & Determine Cluster Memberships
-    # # centroids, labels = Clustering.K_Means(df_scaled, 7, ["S_CTUID"])
+    # # centroids, labels = Clustering.K_Means(df_scaled, 7, ["species"])
 
 
 

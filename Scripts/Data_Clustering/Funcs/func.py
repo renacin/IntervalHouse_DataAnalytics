@@ -31,7 +31,9 @@ class DataPrep:
         except PermissionError:
             print("Files Currently Open In Another Program")
 
-        return df[focus_variables]
+        if len(focus_variables) != 0:
+            return df[focus_variables]
+        return df
 
 
     def max_norm(df: "Pandas Dataframe", skip_col: str) -> "Pandas Dataframe":
@@ -142,13 +144,14 @@ class Clustering:
         for col in drop_col:
             df.drop([col], axis=1, inplace=True)
 
-        # Find Distance Between Values
+        # Find Distance Between Values | Make use of Ward's Linkage Method
         Z = linkage(df, 'ward')
 
         # Plot The Dendrogram
         plt.plot()
         plt.xlabel("Clusters")
         plt.ylabel("Distance (Ward)")
+        plt.title("Hierarchical Clustering: Dendrogram - Combination Of Clusters")
 
         # Make the dendrogram | Do not render x-axis, too many labels
         dendrogram(Z, labels=df.index, leaf_rotation=90)
