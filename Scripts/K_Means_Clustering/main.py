@@ -10,7 +10,7 @@ from Funcs.func import *
 def main():
 
     # Filter Only Income Data Fields For Now
-    focus_rows = ["S_CTUID", "52"]
+    focus_rows = ["S_CTUID", "8", "18", "19", "22", "24", "26", "38", "42", "51"]
     raw_data_path = r"C:\Users\renac\Documents\Programming\Python\IntervalHouse_DataAnalytics\Scripts\K_Means_Clustering\Data\Census_CleanedData.csv"
     df = DataPrep.filter_data(raw_data_path, focus_rows)
 
@@ -19,11 +19,11 @@ def main():
 
     # Determine Optimal Number Of Clusters
     Clustering.Elbow_chart(df_scaled, ["S_CTUID"])
-    Clustering.Dendrogram(df_scaled, ["S_CTUID"])
+    Clustering.Silhouette_chart(df_scaled, ["S_CTUID"])
 
 
-    # Perform K Means Analysis & Determine Cluster Memberships
-    # centroids, labels = Clustering.K_Means(df_scaled, 7, ["S_CTUID"])
+    # # Perform K Means Analysis & Determine Cluster Memberships
+    # # centroids, labels = Clustering.K_Means(df_scaled, 7, ["S_CTUID"])
 
 
 

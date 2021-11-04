@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 
 
 from sklearn.cluster import KMeans
-from sklearn import metrics
+from sklearn.metrics import silhouette_score
 from scipy.spatial.distance import cdist
 from scipy.cluster.hierarchy import dendrogram, linkage
 
@@ -37,7 +37,7 @@ class DataPrep:
     def max_norm(df: "Pandas Dataframe", skip_col: str) -> "Pandas Dataframe":
         """
         This class method takes the provided pandas dataframe and normalizes
-        all fields based on Min&Max values. New dataframe is returned
+        al fields based on Min&Max values. New dataframe is returned
         """
 
         # Make a copy of the data to ensure non-destructive methods
@@ -45,9 +45,11 @@ class DataPrep:
   
         # Apply Max Normalization For Each Column | Skip CT_UID
         for column in df_scaled.columns:
-            if (column != skip_col):
-                df_scaled[column] = df[column]  / df[column].max()
 
+            if (column != skip_col):
+                df_scaled[column] = df_scaled[column]  / df_scaled[column].max()
+
+        df_scaled = df_scaled.fillna(0)
         return df_scaled
 
 
@@ -74,18 +76,57 @@ class Clustering:
         X = df.to_numpy() 
 
         # Iterate Through Max Num Of K For Elbow Chart
-        distortions = []
-        K = range(1, 15)
+        WSCC = []
+        K = range(2, 15)
         for k in K:
-            kmeanModel = KMeans(n_clusters=k, max_iter=150)
+            kmeanModel = KMeans(n_clusters=k, max_iter=150, random_state=0)
             kmeanModel.fit(X)
-            distortions.append(sum(np.min(cdist(X, kmeanModel.cluster_centers_, "euclidean"), axis=1)) / X.shape[0])
+            WSCC.append(kmeanModel.inertia_)
 
         # Plot The Elbow Chart
-        plt.plot(K, distortions, "bx-")
+        plt.plot(K, WSCC, "bx-")
         plt.xlabel("Number Of Clusters (K)")
         plt.ylabel("Overall Distortion (WCSSE)")
         plt.title("Elbow Chart: Finding Optimal K-Value")
+        plt.show()
+
+
+    def Silhouette_chart(df_raw: "Pandas Dataframe", drop_col: list):
+        """
+        Given K numbers of clusters, determine the silouette scores for each iteration,
+        render a silouette score chart informing the user of the optimal number of clusters
+        for a K-Means analysis
+        """
+
+        # Make Copy Just Incase
+        df = df_raw.copy()
+
+        # Drop Unneeded Columns
+        for col in drop_col:
+            df.drop([col], axis=1, inplace=True)
+
+        # Create New Plot For Data
+        plt.plot()
+        X = df.to_numpy() 
+
+        # Run K-Means Analysis & Calculate Silhouette Score For Each K Iteration
+        sil_score = []
+        K = range(2, 15)
+        for k in K:
+            kmeanModel = KMeans(n_clusters=k, max_iter=150, random_state=0)
+            kmeanModel.fit(X)
+            score = silhouette_score(X, kmeanModel.labels_)
+            sil_score.append(score)
+
+        # Find K Iteration With Highest Score
+        max_k = (sil_score.index(max(sil_score))) + 2
+
+        # Plot The Elbow Chart
+        plt.plot(K, sil_score, "bx-")
+        plt.xlabel("Number Of Clusters (K)")
+        plt.ylabel("Silhouette Score (Euclidean Distance)")
+        plt.title("Silhouette Score Chart: Finding Optimal K-Value")
+        plt.axvline(max_k, linestyle="--")
         plt.show()
 
 
