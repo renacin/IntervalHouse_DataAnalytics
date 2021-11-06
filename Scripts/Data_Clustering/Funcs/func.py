@@ -4,10 +4,10 @@
 #
 # ----------------------------------------------------------------------------------------------------------------------
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 
-
-from sklearn.cluster import KMeans
+from sklearn.cluster import KMeans, MeanShift, estimate_bandwidth
 from sklearn.metrics import silhouette_score
 from scipy.cluster.hierarchy import dendrogram, linkage
 
@@ -157,6 +157,9 @@ def k_means(df_raw: "Pandas Dataframe", k : "Number Of Clusters", drop_col: list
     via a simple line chart for user.
     """
 
+    # Make Copy Just Incase
+    df_raw = df_raw.copy()
+
     # Drop Unneeded Columns
     for col in drop_col:
         df_raw.drop([col], axis=1, inplace=True)
@@ -179,9 +182,28 @@ def mean_shift(df_raw: "Pandas Dataframe", drop_col: list):
     How do I determine the accuracy of a Mean Shift analysis?
     """
 
+    # Make Copy Just Incase
+    df_raw = df_raw.copy()
+
     # Drop Unneeded Columns
     for col in drop_col:
         df_raw.drop([col], axis=1, inplace=True)
 
+    # Dataframe To Numpy Array For Clustering
+    training_data = df_raw.to_numpy()
+
+    # Bandwidth is found automatically with
+    bandwidth = estimate_bandwidth(training_data, quantile=0.2, n_samples=500)
+
+    # Run the algorithm
+    mean_shift_model = MeanShift(bandwidth=bandwidth, bin_seeding=True)
+    mean_shift_model.fit(training_data)
+    labels = mean_shift_model.labels_
+    cluster_centers = mean_shift_model.cluster_centers_
+
+    labels_unique = np.unique(labels)
+    n_clusters = len(labels_unique)
+
     # Return Cluster Membership & Centroid Locations
-    return 1
+    print(f"Mean Shift Clusters Found: {n_clusters}")
+    return cluster_centers, labels

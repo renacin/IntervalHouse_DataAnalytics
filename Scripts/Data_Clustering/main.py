@@ -18,10 +18,6 @@ def main():
     # Normalize Data
     df_scaled = max_norm(df_filtered, "species")
 
-    # For Debugging
-    print(df_scaled.info())
-    print(df_scaled.head())
-
     # Determine Optimal Number Of Clusters
     elbow_chart(df_scaled, ["species"])
     silhouette_chart(df_scaled, ["species"])
@@ -29,7 +25,7 @@ def main():
 
     # Perform K Means Analysis & Determine Cluster Memberships
     centroids, labels = k_means(df_scaled, 7, ["species"])
-
+    centroids, labels = mean_shift(df_scaled, ["species"])
 
 
 
