@@ -20,12 +20,12 @@ def main():
 
     # Determine Optimal Number Of Clusters
     elbow_chart(df_scaled, ["species"])
-    silhouette_chart(df_scaled, ["species"])
-    dendrogram_plot(df_scaled, ["species"])
-
-    # Perform K Means Analysis & Determine Cluster Memberships
-    centroids, labels = k_means(df_scaled, 7, ["species"])
-    centroids, labels = mean_shift(df_scaled, ["species"])
+    # silhouette_chart(df_scaled, ["species"])
+    # dendrogram_plot(df_scaled, ["species"])
+    #
+    # # Perform K Means Analysis & Determine Cluster Memberships
+    # centroids, labels = k_means(df_scaled, 7, ["species"])
+    # centroids, labels = mean_shift(df_scaled, ["species"])
 
 
 

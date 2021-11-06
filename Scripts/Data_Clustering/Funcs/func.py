@@ -71,7 +71,7 @@ def elbow_chart(df_raw: "Pandas Dataframe", drop_col: list):
     wscc = []
     num_k = range(2, 15)
     for k in num_k:
-        kmean_model = KMeans(n_clusters=k, max_iter=150, random_state=0)
+        kmean_model = KMeans(n_clusters=k, init = 'k-means++', max_iter=300, n_init = 10, random_state=0)
         kmean_model.fit(training_data)
         wscc.append(kmean_model.inertia_)
 
@@ -168,7 +168,7 @@ def k_means(df_raw: "Pandas Dataframe", k : "Number Of Clusters", drop_col: list
     training_data = df_raw.to_numpy()
 
     # Perform K-Means Analysis
-    kmean_model = KMeans(n_clusters=k, max_iter=150)
+    kmean_model = KMeans(n_clusters=k, init = 'k-means++', max_iter=300, n_init = 10, random_state=0)
     kmean_model.fit(training_data)
 
     # Return Cluster Membership & Centroid Locations
