@@ -50,40 +50,40 @@ def max_norm(df_raw: "Pandas Dataframe", skip_col: str) -> "Pandas Dataframe":
     return df_scaled
 
 
-def Elbow_chart(df_raw: "Pandas Dataframe", drop_col: list):
+def elbow_chart(df_raw: "Pandas Dataframe", drop_col: list):
     """
     Run K number of K-Means analyses to identify optimal K value. Plot distortions
     via a simple line chart for user.
     """
 
     # Make Copy Just Incase
-    df = df_raw.copy()
+    df_copy = df_raw.copy()
 
     # Drop Unneeded Columns
     for col in drop_col:
-        df.drop([col], axis=1, inplace=True)
+        df_copy.drop([col], axis=1, inplace=True)
 
     # Create New Plot For Data
     plt.plot()
-    X = df.to_numpy()
+    training_data = df_copy.to_numpy()
 
     # Iterate Through Max Num Of K For Elbow Chart
-    WSCC = []
-    K = range(2, 15)
-    for k in K:
-        kmeanModel = KMeans(n_clusters=k, max_iter=150, random_state=0)
-        kmeanModel.fit(X)
-        WSCC.append(kmeanModel.inertia_)
+    wscc = []
+    num_k = range(2, 15)
+    for k in num_k:
+        kmean_model = KMeans(n_clusters=k, max_iter=150, random_state=0)
+        kmean_model.fit(training_data)
+        wscc.append(kmean_model.inertia_)
 
     # Plot The Elbow Chart
-    plt.plot(K, WSCC, "bx-")
+    plt.plot(num_k, wscc, "bx-")
     plt.xlabel("Number Of Clusters (K)")
     plt.ylabel("Overall Distortion (WCSSE)")
     plt.title("Elbow Chart: Finding Optimal K-Value")
     plt.show()
 
 
-def Silhouette_chart(df_raw: "Pandas Dataframe", drop_col: list):
+def silhouette_chart(df_raw: "Pandas Dataframe", drop_col: list):
     """
     Given K numbers of clusters, determine the silouette scores for each iteration,
     render a silouette score chart informing the user of the optimal number of clusters
@@ -91,30 +91,30 @@ def Silhouette_chart(df_raw: "Pandas Dataframe", drop_col: list):
     """
 
     # Make Copy Just Incase
-    df = df_raw.copy()
+    df_raw = df_raw.copy()
 
     # Drop Unneeded Columns
     for col in drop_col:
-        df.drop([col], axis=1, inplace=True)
+        df_raw.drop([col], axis=1, inplace=True)
 
     # Create New Plot For Data
     plt.plot()
-    X = df.to_numpy()
+    training_data = df_raw.to_numpy()
 
     # Run K-Means Analysis & Calculate Silhouette Score For Each K Iteration
     sil_score = []
-    K = range(2, 15)
-    for k in K:
-        kmeanModel = KMeans(n_clusters=k, max_iter=150, random_state=0)
-        kmeanModel.fit(X)
-        score = silhouette_score(X, kmeanModel.labels_)
+    num_k = range(2, 15)
+    for k in num_k:
+        kmean_model = KMeans(n_clusters=k, max_iter=150, random_state=0)
+        kmean_model.fit(training_data)
+        score = silhouette_score(training_data, kmean_model.labels_)
         sil_score.append(score)
 
     # Find K Iteration With Highest Score
     max_k = (sil_score.index(max(sil_score))) + 2
 
     # Plot The Elbow Chart
-    plt.plot(K, sil_score, "bx-")
+    plt.plot(num_k, sil_score, "bx-")
     plt.xlabel("Number Of Clusters (K)")
     plt.ylabel("Silhouette Score (Euclidean Distance)")
     plt.title("Silhouette Score Chart: Finding Optimal K-Value")
@@ -122,20 +122,20 @@ def Silhouette_chart(df_raw: "Pandas Dataframe", drop_col: list):
     plt.show()
 
 
-def Dendrogram(df_raw: "Pandas Dataframe", drop_col: list):
+def dendrogram_plot(df_raw: "Pandas Dataframe", drop_col: list):
     """
     Create a dendrogram to help the user identify the optimal number of clusters for thier clustering attempt
     """
 
     # Make Copy Just Incase
-    df = df_raw.copy()
+    df_raw = df_raw.copy()
 
     # Drop Unneeded Columns
     for col in drop_col:
-        df.drop([col], axis=1, inplace=True)
+        df_raw.drop([col], axis=1, inplace=True)
 
     # Find Distance Between Values | Make use of Ward's Linkage Method
-    Z = linkage(df, 'ward')
+    z_linkages = linkage(df_raw, 'ward')
 
     # Plot The Dendrogram
     plt.plot()
@@ -144,14 +144,14 @@ def Dendrogram(df_raw: "Pandas Dataframe", drop_col: list):
     plt.title("Hierarchical Clustering: Dendrogram - Combination Of Clusters")
 
     # Make the dendrogram | Do not render x-axis, too many labels
-    dendrogram(Z, labels=df.index, leaf_rotation=90)
-    ax = plt.gca()
-    ax.get_xaxis().set_visible(False)
+    dendrogram(z_linkages, labels=df_raw.index, leaf_rotation=90)
+    plt_ax = plt.gca()
+    plt_ax.get_xaxis().set_visible(False)
     plt.show()
 
 
 
-def K_Means(df: "Pandas Dataframe", k : "Number Of Clusters", drop_col: list):
+def k_means(df_raw: "Pandas Dataframe", k : "Number Of Clusters", drop_col: list):
     """
     Run K number of K-Means analyses to identify optimal K value. Plot distortions
     via a simple line chart for user.
@@ -159,21 +159,21 @@ def K_Means(df: "Pandas Dataframe", k : "Number Of Clusters", drop_col: list):
 
     # Drop Unneeded Columns
     for col in drop_col:
-        df.drop([col], axis=1, inplace=True)
+        df_raw.drop([col], axis=1, inplace=True)
 
     # Dataframe To Numpy Array For Clustering
-    X = df.to_numpy()
+    training_data = df_raw.to_numpy()
 
     # Perform K-Means Analysis
-    kmeanModel = KMeans(n_clusters=k, max_iter=150)
-    kmeanModel.fit(X)
+    kmean_model = KMeans(n_clusters=k, max_iter=150)
+    kmean_model.fit(training_data)
 
     # Return Cluster Membership & Centroid Locations
-    return [kmeanModel.cluster_centers_, kmeanModel.labels_]
+    return [kmean_model.cluster_centers_, kmean_model.labels_]
 
 
 
-def Mean_Shift(df: "Pandas Dataframe", drop_col: list):
+def mean_shift(df_raw: "Pandas Dataframe", drop_col: list):
     """
     Run Mean-Shift analysis to identify clusters in data.
     How do I determine the accuracy of a Mean Shift analysis?
@@ -181,13 +181,7 @@ def Mean_Shift(df: "Pandas Dataframe", drop_col: list):
 
     # Drop Unneeded Columns
     for col in drop_col:
-        df.drop([col], axis=1, inplace=True)
-
-    # Dataframe To Numpy Array For Clustering
-    X = df.to_numpy()
-
-    # Perform K-Means Analysis
-
+        df_raw.drop([col], axis=1, inplace=True)
 
     # Return Cluster Membership & Centroid Locations
     return 1
