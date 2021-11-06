@@ -15,17 +15,18 @@ def main():
     raw_data_path = r"C:\Users\renac\Documents\Programming\Python\IntervalHouse_DataAnalytics\Scripts\Data_Clustering\Data\Flower_IRIS_Data.csv"
     df_filtered = filter_data(raw_data_path, focus_rows)
 
-    # Normalize Data
+    # Normalize Data & Describe
     df_scaled = max_norm(df_filtered, "species")
-
-    # Determine Optimal Number Of Clusters
-    elbow_chart(df_scaled, ["species"])
+    # describe_data(df_scaled, "species")
+    #
+    # # Determine Optimal Number Of Clusters
+    # elbow_chart(df_scaled, ["species"])
     # silhouette_chart(df_scaled, ["species"])
     # dendrogram_plot(df_scaled, ["species"])
-    #
-    # # Perform K Means Analysis & Determine Cluster Memberships
-    # centroids, labels = k_means(df_scaled, 7, ["species"])
-    # centroids, labels = mean_shift(df_scaled, ["species"])
+
+    # Perform K Means Analysis & Determine Cluster Memberships
+    centroids, labels = k_means(df_scaled, 3, ["species"])
+    centroids, labels = mean_shift(df_scaled, ["species"])
 
 
 

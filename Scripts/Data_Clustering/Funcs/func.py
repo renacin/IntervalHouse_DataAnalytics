@@ -4,6 +4,7 @@
 #
 # ----------------------------------------------------------------------------------------------------------------------
 import pandas as pd
+import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -11,6 +12,7 @@ from sklearn.cluster import KMeans, MeanShift, estimate_bandwidth
 from sklearn.metrics import silhouette_score
 from scipy.cluster.hierarchy import dendrogram, linkage
 
+sns.set(style="darkgrid")
 # ----------------------------------------------------------------------------------------------------------------------
 
 
@@ -50,6 +52,30 @@ def max_norm(df_raw: "Pandas Dataframe", skip_col: str) -> "Pandas Dataframe":
     return df_scaled
 
 
+def describe_data(df_raw: "Pandas Dataframe", skip_col: str):
+    """
+    This function returns basic data description information.
+    Histograms, Scatterplots, Mean, Standard Deviation Etc...
+    """
+
+    # Make Copy Just Incase
+    df_copy = df_raw.copy()
+
+    # Drop Identifier Col
+    df_copy.drop([skip_col], axis=1, inplace=True)
+
+    # Return Basic Field Description
+    print(df_copy.info())
+
+    # Return Basic Data Description
+    print(df_copy.describe())
+
+    # Render Basic Scatter & Histogram Chart
+    sns.pairplot(df_copy, plot_kws=dict(marker="+", linewidth=0.5), diag_kws=dict(fill=False), corner=True)
+    plt.show()
+
+
+
 def elbow_chart(df_raw: "Pandas Dataframe", drop_col: list):
     """
     Run K number of K-Means analyses to identify optimal K value. Plot distortions
@@ -69,7 +95,7 @@ def elbow_chart(df_raw: "Pandas Dataframe", drop_col: list):
 
     # Iterate Through Max Num Of K For Elbow Chart
     wscc = []
-    num_k = range(2, 15)
+    num_k = range(1, 15)
     for k in num_k:
         kmean_model = KMeans(n_clusters=k, init = 'k-means++', max_iter=300, n_init = 10, random_state=0)
         kmean_model.fit(training_data)
@@ -105,9 +131,9 @@ def silhouette_chart(df_raw: "Pandas Dataframe", drop_col: list):
     sil_score = []
     num_k = range(2, 15)
     for k in num_k:
-        kmean_model = KMeans(n_clusters=k, max_iter=150, random_state=0)
+        kmean_model = KMeans(n_clusters=k, init = 'k-means++', max_iter=300, n_init = 10, random_state=0)
         kmean_model.fit(training_data)
-        score = silhouette_score(training_data, kmean_model.labels_)
+        score = silhouette_score(training_data, kmean_model.labels_, metric='euclidean')
         sil_score.append(score)
 
     # Find K Iteration With Highest Score
