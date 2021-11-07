@@ -59,6 +59,27 @@ class DataTransform():
 
 
     @staticmethod
+    def corr_data(df_raw: "Pandas Dataframe", skip_col: str):
+        """
+        This class method takes the provided pandas dataframe provides a correlation
+        matrix for each variable
+        """
+
+        # Make a copy of the data to ensure non-destructive methods
+        df_copy = df_raw.copy()
+
+        # Drop Identifier Col
+        df_copy.drop([skip_col], axis=1, inplace=True)
+
+        # Correlation Matrix formation
+        corr_matrix = df_copy.corr()
+
+        #Using heatmap to visualize the correlation matrix
+        sns.heatmap(corr_matrix, annot = True, cmap = 'coolwarm')
+        plt.show()
+
+
+    @staticmethod
     def describe_data(df_raw: "Pandas Dataframe", skip_col: str):
         """
         This function returns basic data description information.
