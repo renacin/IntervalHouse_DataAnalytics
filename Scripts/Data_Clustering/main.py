@@ -12,21 +12,21 @@ def main():
 
     # Filter Only Income Data Fields For Now
     focus_rows = []
-    raw_data_path = r"C:\Users\renac\Documents\Programming\Python\IntervalHouse_DataAnalytics\Scripts\Data_Clustering\Data\Flower_IRIS_Data.csv"
-    df_filtered = filter_data(raw_data_path, focus_rows)
+    raw_data_path = r"C:\Users\renac\Documents\Programming\Python\IntervalHouse_DataAnalytics\Scripts\Data_Clustering\Data\Census_CleanedData.csv"
+    df_filtered = DataTransform.filter_data(raw_data_path, focus_rows)
 
     # Normalize Data & Describe
-    df_scaled = max_norm(df_filtered, "species")
-    # describe_data(df_scaled, "species")
-    #
-    # # Determine Optimal Number Of Clusters
-    # elbow_chart(df_scaled, ["species"])
-    # silhouette_chart(df_scaled, ["species"])
-    # dendrogram_plot(df_scaled, ["species"])
+    df_scaled = DataTransform.max_norm(df_filtered, "S_CTUID")
+    # DataTransform.describe_data(df_scaled, "S_CTUID")
+
+    # Determine Optimal Number Of Clusters
+    DataClustering.elbow_chart(df_scaled, ["S_CTUID"])
+    DataClustering.silhouette_chart(df_scaled, ["S_CTUID"])
+    DataClustering.dendrogram_plot(df_scaled, ["S_CTUID"])
 
     # Perform K Means Analysis & Determine Cluster Memberships
-    centroids, labels = k_means(df_scaled, 3, ["species"])
-    centroids, labels = mean_shift(df_scaled, ["species"])
+    # centroids, labels = DataClustering.k_means(df_scaled, 3, ["﻿S_CTUID"])
+    centroids, labels = DataClustering.mean_shift(df_scaled, ["﻿S_CTUID"])
 
 
 
