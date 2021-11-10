@@ -59,7 +59,7 @@ class DataTransform():
 
 
     @staticmethod
-    def corr_data(df_raw: "Pandas Dataframe", skip_col: str):
+    def corr_data(df_raw: "Pandas Dataframe", skip_col: str, csv_path=False) -> "CSV If User Wants It":
         """
         This class method takes the provided pandas dataframe provides a correlation
         matrix for each variable
@@ -71,8 +71,12 @@ class DataTransform():
         # Drop Identifier Col
         df_copy.drop([skip_col], axis=1, inplace=True)
 
-        # Correlation Matrix formation
-        corr_matrix = df_copy.corr()
+        # Correlation Matrix formation | Methods: pearson, kendall, spearman
+        corr_matrix = df_copy.corr(method='pearson')
+
+        # Check To See If User Wants To Write Correlation Data
+        if csv_path is not False:
+            corr_matrix.to_csv(csv_path)
 
         #Using heatmap to visualize the correlation matrix
         sns.heatmap(corr_matrix, annot = True, cmap = 'coolwarm')
