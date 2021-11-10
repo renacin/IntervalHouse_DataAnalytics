@@ -11,7 +11,7 @@ def main():
     """ Main Logic Of Python Code """
 
     # Filter Only Income Data Fields For Now
-    focus_rows = []
+    focus_rows = ["S_CTUID", "16", "17", "18", "19", "20", "21", "22", "40", "41", "42", "43", "44", "45", "46", "47"]
     raw_data_path = r"C:\Users\renac\Documents\Programming\Python\IntervalHouse_DataAnalytics\Scripts\Data_Clustering\Data\Census_CleanedData.csv"
     df_filtered = DataTransform.filter_data(raw_data_path, focus_rows)
 
