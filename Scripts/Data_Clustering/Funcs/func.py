@@ -9,8 +9,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from sklearn.cluster import KMeans, MeanShift, estimate_bandwidth
-from sklearn.metrics import silhouette_score
 from scipy.cluster.hierarchy import dendrogram, linkage
+from sklearn.decomposition import PCA
+from sklearn.metrics import silhouette_score
+from sklearn.preprocessing import StandardScaler
 
 sns.set(style="darkgrid")
 # ----------------------------------------------------------------------------------------------------------------------
@@ -30,36 +32,35 @@ class DataTransform():
         try:
             df_raw = pd.read_csv(data_path)
             df_filtered = df_raw.copy()
+            df_filtered = df_filtered.fillna(0)
+
+            if len(focus_variables) != 0:
+                return df_filtered[focus_variables]
+
+            return df_filtered
+
         except PermissionError:
             print("Files Currently Open In Another Program")
-
-        if len(focus_variables) != 0:
-            return df_filtered[focus_variables]
-
-        return df_filtered
+            raise PermissionError
 
 
     @staticmethod
-    def max_norm(df_raw: "Pandas Dataframe", skip_col: str) -> "Pandas Dataframe":
+    def scaled_z(df_raw: "Pandas Dataframe") -> "Pandas Dataframe":
         """
         This class method takes the provided pandas dataframe and normalizes
-        al fields based on Min&Max values. New dataframe is returned
+        all fields based on Sklearn's built in scaler
         """
 
         # Make a copy of the data to ensure non-destructive methods
-        df_scaled = df_raw.copy()
+        df_copy = df_raw.copy()
+        scaler = StandardScaler()
+        np_scaled_data = scaler.fit_transform(df_copy)
 
-        # Apply Max Normalization For Each Column | Skip CT_UID
-        for column in df_scaled.columns:
-            if column != skip_col:
-                df_scaled[column] = df_scaled[column]  / df_scaled[column].max()
-
-        df_scaled = df_scaled.fillna(0)
-        return df_scaled
+        return pd.DataFrame(np_scaled_data)
 
 
     @staticmethod
-    def corr_data(df_raw: "Pandas Dataframe", skip_col: str, csv_path=False) -> "CSV If User Wants It":
+    def corr_data(df_raw: "Pandas Dataframe", csv_path=False) -> "CSV If User Wants It":
         """
         This class method takes the provided pandas dataframe provides a correlation
         matrix for each variable
@@ -67,9 +68,6 @@ class DataTransform():
 
         # Make a copy of the data to ensure non-destructive methods
         df_copy = df_raw.copy()
-
-        # Drop Identifier Col
-        df_copy.drop([skip_col], axis=1, inplace=True)
 
         # Correlation Matrix formation | Methods: pearson, kendall, spearman
         corr_matrix = df_copy.corr(method='pearson')
@@ -84,7 +82,7 @@ class DataTransform():
 
 
     @staticmethod
-    def describe_data(df_raw: "Pandas Dataframe", skip_col: str):
+    def describe_data(df_raw: "Pandas Dataframe"):
         """
         This function returns basic data description information.
         Histograms, Scatterplots, Mean, Standard Deviation Etc...
@@ -92,9 +90,6 @@ class DataTransform():
 
         # Make Copy Just Incase
         df_copy = df_raw.copy()
-
-        # Drop Identifier Col
-        df_copy.drop([skip_col], axis=1, inplace=True)
 
         # Return Basic Field Description
         print(df_copy.info())
@@ -113,7 +108,7 @@ class DataClustering():
 
 
     @staticmethod
-    def elbow_chart(df_raw: "Pandas Dataframe", drop_col: list):
+    def elbow_chart(df_raw: "Pandas Dataframe"):
         """
         Run K number of K-Means analyses to identify optimal K value. Plot distortions
         via a simple line chart for user.
@@ -121,10 +116,6 @@ class DataClustering():
 
         # Make Copy Just Incase
         df_copy = df_raw.copy()
-
-        # Drop Unneeded Columns
-        for col in drop_col:
-            df_copy.drop([col], axis=1, inplace=True)
 
         # Create New Plot For Data
         plt.plot()
@@ -147,7 +138,7 @@ class DataClustering():
 
 
     @staticmethod
-    def silhouette_chart(df_raw: "Pandas Dataframe", drop_col: list):
+    def silhouette_chart(df_raw: "Pandas Dataframe"):
         """
         Given K numbers of clusters, determine the silouette scores for each iteration,
         render a silouette score chart informing the user of the optimal number of clusters
@@ -156,10 +147,6 @@ class DataClustering():
 
         # Make Copy Just Incase
         df_raw = df_raw.copy()
-
-        # Drop Unneeded Columns
-        for col in drop_col:
-            df_raw.drop([col], axis=1, inplace=True)
 
         # Create New Plot For Data
         plt.plot()
@@ -187,17 +174,13 @@ class DataClustering():
 
 
     @staticmethod
-    def dendrogram_plot(df_raw: "Pandas Dataframe", drop_col: list):
+    def dendrogram_plot(df_raw: "Pandas Dataframe"):
         """
         Create a dendrogram to help the user identify the optimal number of clusters for thier clustering attempt
         """
 
         # Make Copy Just Incase
         df_raw = df_raw.copy()
-
-        # Drop Unneeded Columns
-        for col in drop_col:
-            df_raw.drop([col], axis=1, inplace=True)
 
         # Find Distance Between Values | Make use of Ward's Linkage Method
         z_linkages = linkage(df_raw, 'ward')
@@ -216,7 +199,7 @@ class DataClustering():
 
 
     @staticmethod
-    def k_means(df_raw: "Pandas Dataframe", k : "Number Of Clusters", drop_col: list):
+    def k_means(df_raw: "Pandas Dataframe", k : "Number Of Clusters"):
         """
         Run K number of K-Means analyses to identify optimal K value. Plot distortions
         via a simple line chart for user.
@@ -224,10 +207,6 @@ class DataClustering():
 
         # Make Copy Just Incase
         df_raw = df_raw.copy()
-
-        # Drop Unneeded Columns
-        for col in drop_col:
-            df_raw.drop([col], axis=1, inplace=True)
 
         # Dataframe To Numpy Array For Clustering
         training_data = df_raw.to_numpy()
@@ -241,7 +220,7 @@ class DataClustering():
 
 
     @staticmethod
-    def mean_shift(df_raw: "Pandas Dataframe", drop_col: list):
+    def mean_shift(df_raw: "Pandas Dataframe"):
         """
         Run Mean-Shift analysis to identify clusters in data.
         How do I determine the accuracy of a Mean Shift analysis?
@@ -249,13 +228,6 @@ class DataClustering():
 
         # Make Copy Just Incase
         df_raw = df_raw.copy()
-
-        # Drop Unneeded Columns
-        try:
-            for col in drop_col:
-                df_raw.drop([col], axis=1, inplace=True)
-        except KeyError:
-            pass
 
         # Dataframe To Numpy Array For Clustering
         training_data = df_raw.to_numpy()
@@ -275,3 +247,45 @@ class DataClustering():
         # Return Cluster Membership & Centroid Locations
         print(f"Mean Shift Clusters Found: {n_clusters}")
         return cluster_centers, labels
+
+
+
+class ComponentAnalysis():
+    """ This class stores all functions related to component analysis """
+
+    @staticmethod
+    def principle_component_analysis(df_raw: "Pandas Dataframe"):
+        """
+        Perform a principle component analysis and determine gourping of variables and possible underlying factors
+        """
+
+        # Make Copy Just Incase
+        df_copy = df_raw.copy()
+
+        # Dataframe To Numpy Array For Clustering | Store Data In Dictionary
+        pca_dict = {}
+        training_data = df_copy.to_numpy()
+
+        # Perform PCA
+        pca = PCA()
+        pca.fit_transform(training_data)
+        pca_data = pca.transform(training_data)
+
+        # Basic Analysis
+        pca_dict["ComponentNumber"] = list(range(1, pca.n_components_ + 1))
+        pca_dict["Explained_Variance"] = pca.explained_variance_ratio_ * 100
+        pca_dict["Cummulative_Explained_Variance"] = np.cumsum((pca.explained_variance_ratio_ * 100))
+
+        # # Eigenvalues Above 1
+        # eigenvalues = pca.explained_variance_
+        # e_df = pd.DataFrame(eigenvalues)
+        # eigen_values_g1 = [x for x in e_df[0].tolist() if x > 1]
+
+        # Print Variable Importance In Each Component
+        pca_comp_df = pd.DataFrame(pca.components_)
+        pca_comp_df.to_csv(r"C:\Users\renac\Desktop\PCA_Components.csv")
+        print(pca_comp_df)
+
+        # # Print Data Dictionary
+        # pca_df = pd.DataFrame(pca_dict)
+        # print(pca_df)
