@@ -55,8 +55,10 @@ class DataTransform():
         df_copy = df_raw.copy()
         scaler = StandardScaler()
         np_scaled_data = scaler.fit_transform(df_copy)
+        scaled_df = pd.DataFrame(np_scaled_data)
+        scaled_df.columns = list(df_copy.columns)
 
-        return pd.DataFrame(np_scaled_data)
+        return scaled_df
 
 
     @staticmethod
@@ -261,8 +263,9 @@ class ComponentAnalysis():
 
         # Make Copy Just Incase
         df_copy = df_raw.copy()
+        df_copy_cols = list(df_copy.columns)
 
-        # Dataframe To Numpy Array For Clustering | Store Data In Dictionary
+        # Dataframe To Numpy Array For Clustering | Store Data In Dictionary | Grab Original Column Names
         pca_dict = {}
         training_data = df_copy.to_numpy()
 
@@ -276,16 +279,28 @@ class ComponentAnalysis():
         pca_dict["Explained_Variance"] = pca.explained_variance_ratio_ * 100
         pca_dict["Cummulative_Explained_Variance"] = np.cumsum((pca.explained_variance_ratio_ * 100))
 
-        # # Eigenvalues Above 1
-        # eigenvalues = pca.explained_variance_
-        # e_df = pd.DataFrame(eigenvalues)
-        # eigen_values_g1 = [x for x in e_df[0].tolist() if x > 1]
+        # Eigenvalues Above 1
+        eigenvalues = pca.explained_variance_
+        e_df = pd.DataFrame(eigenvalues)
+        eigen_values_g1 = [x for x in e_df[0].tolist() if x > 1]
 
-        # Print Variable Importance In Each Component
+        # Print Variable Importance In Each Component | Magnitude Indicates The Influence On The Component (In Abs Terms)
         pca_comp_df = pd.DataFrame(pca.components_)
-        pca_comp_df.to_csv(r"C:\Users\renac\Desktop\PCA_Components.csv")
-        print(pca_comp_df)
+        transposed_pca_comp_df = pca_comp_df.transpose()
 
-        # # Print Data Dictionary
-        # pca_df = pd.DataFrame(pca_dict)
-        # print(pca_df)
+        new_cols = [f"PC_{x}" for x in range(1, pca.n_components_ + 1)]
+        transposed_pca_comp_df.columns = new_cols
+
+        transposed_pca_comp_df["Variables"] = df_copy_cols
+        transposed_pca_comp_df.set_index("Variables", inplace = True)
+
+        main_pcs = new_cols[0 : len(eigen_values_g1)]
+        transposed_pca_comp_df = transposed_pca_comp_df[main_pcs]
+
+        # # Iterate Through Dataframe & Supress Values Between 0.300 & -0.300
+        supress_val = 0.3
+        for col in main_pcs:
+            transposed_pca_comp_df.loc[(transposed_pca_comp_df[col] <= supress_val) & (transposed_pca_comp_df[col] >= -supress_val), col] = ""
+
+        # Print Data Dictionary
+        pca_df = pd.DataFrame(pca_dict)

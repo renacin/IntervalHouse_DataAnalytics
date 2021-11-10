@@ -20,7 +20,6 @@ def main():
     df_filtered.drop("S_CTUID", axis=1, inplace=True)
     df_scaled = DataTransform.scaled_z(df_filtered)
 
-
     # DataTransform.describe_data(df_scaled)
     # DataTransform.corr_data(df_scaled, r"C:\Users\renac\Desktop\Coor_Matrix.csv")
 
