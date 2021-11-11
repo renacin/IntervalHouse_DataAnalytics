@@ -11,13 +11,13 @@ def main():
     """ Main Logic Of Python Code """
 
     # Filter Only Income Data Fields For Now
-    focus_rows = ["S_CTUID", "16", "17", "18", "19", "20", "21", "22", "40", "41", "42", "43", "44", "45", "46", "47"]
-    raw_data_path = r"C:\Users\renac\Documents\Programming\Python\IntervalHouse_DataAnalytics\Scripts\Data_Clustering\Data\Census_CleanedData.csv"
+    focus_rows = []
+    raw_data_path = r"C:\Users\renac\Documents\Programming\Python\IntervalHouse_DataAnalytics\Scripts\Data_Clustering\Data\WineTestData.csv"
     df_filtered = DataTransform.filter_data(raw_data_path, focus_rows)
 
     # Normalize Data & Describe
     # S_CTUID_Data = df_filtered["S_CTUID"].tolist()
-    df_filtered.drop("S_CTUID", axis=1, inplace=True)
+    df_filtered.drop("ID", axis=1, inplace=True)
     df_scaled = DataTransform.scaled_z(df_filtered)
 
     # DataTransform.describe_data(df_scaled)
@@ -35,6 +35,8 @@ def main():
 
     # Perform Component Analysis
     var_comp, pca_df = ComponentAnalysis.principle_component_analysis(df_scaled)
+    print(var_comp)
+    print(pca_df)
 
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
