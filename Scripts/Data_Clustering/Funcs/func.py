@@ -255,6 +255,7 @@ class DataClustering():
 class ComponentAnalysis():
     """ This class stores all functions related to component analysis """
 
+
     @staticmethod
     def principle_component_analysis(df_raw: "Pandas Dataframe"):
         """
@@ -276,6 +277,7 @@ class ComponentAnalysis():
 
         # Basic Analysis
         pca_dict["ComponentNumber"] = list(range(1, pca.n_components_ + 1))
+        pca_dict["Eigenvalues"] = pca.explained_variance_
         pca_dict["Explained_Variance"] = pca.explained_variance_ratio_ * 100
         pca_dict["Cummulative_Explained_Variance"] = np.cumsum((pca.explained_variance_ratio_ * 100))
 
@@ -304,3 +306,5 @@ class ComponentAnalysis():
 
         # Print Data Dictionary
         pca_df = pd.DataFrame(pca_dict)
+
+        return transposed_pca_comp_df, pca_df

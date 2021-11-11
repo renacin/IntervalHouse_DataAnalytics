@@ -16,7 +16,7 @@ def main():
     df_filtered = DataTransform.filter_data(raw_data_path, focus_rows)
 
     # Normalize Data & Describe
-    S_CTUID_Data = df_filtered["S_CTUID"].tolist()
+    # S_CTUID_Data = df_filtered["S_CTUID"].tolist()
     df_filtered.drop("S_CTUID", axis=1, inplace=True)
     df_scaled = DataTransform.scaled_z(df_filtered)
 
@@ -34,9 +34,7 @@ def main():
     # centroids, labels = DataClustering.mean_shift(df_scaled)
 
     # Perform Component Analysis
-    ComponentAnalysis.principle_component_analysis(df_scaled)
-
-
+    var_comp, pca_df = ComponentAnalysis.principle_component_analysis(df_scaled)
 
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
