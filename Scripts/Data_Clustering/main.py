@@ -34,9 +34,8 @@ def main():
     # centroids, labels = DataClustering.mean_shift(df_scaled)
 
     # Perform Component Analysis
-    var_comp, pca_df = ComponentAnalysis.principle_component_analysis(df_scaled)
-    print(var_comp)
-    print(pca_df)
+    pca_var_comp_df, pca_info_df, pca_row_comp_df = ComponentAnalysis.principle_component_analysis(df_scaled)
+    print(pca_row_comp_df)
 
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":

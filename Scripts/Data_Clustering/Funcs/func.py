@@ -304,7 +304,11 @@ class ComponentAnalysis():
         for col in main_pcs:
             transposed_pca_comp_df.loc[(transposed_pca_comp_df[col] <= supress_val) & (transposed_pca_comp_df[col] >= -supress_val), col] = ""
 
-        # Print Data Dictionary
+        # Return Principle Component Information As Pandas DF
         pca_df = pd.DataFrame(pca_dict)
 
-        return transposed_pca_comp_df, pca_df
+        # Priciple Component Data For Each Row As Pandas DF
+        pc_row_data = pd.DataFrame(pca_data)
+        pc_row_data.columns = new_cols
+
+        return transposed_pca_comp_df, pca_df, pc_row_data[main_pcs]
