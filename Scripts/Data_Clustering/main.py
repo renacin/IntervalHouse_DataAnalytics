@@ -20,22 +20,22 @@ def main():
     df_filtered.drop("ID", axis=1, inplace=True)
     df_scaled = DataTransform.scaled_z(df_filtered)
 
-    # DataTransform.describe_data(df_scaled)
-    # DataTransform.corr_data(df_scaled, r"C:\Users\renac\Desktop\Coor_Matrix.csv")
+    DataTransform.describe_data(df_scaled)
+    DataTransform.corr_data(df_scaled, r"C:\Users\renac\Desktop\Coor_Matrix.csv")
 
 
-    # # Determine Optimal Number Of Clusters
-    # DataClustering.elbow_chart(df_scaled)
-    # DataClustering.silhouette_chart(df_scaled)
-    # DataClustering.dendrogram_plot(df_scaled)
+    # Determine Optimal Number Of Clusters
+    DataClustering.elbow_chart(df_scaled)
+    DataClustering.silhouette_chart(df_scaled)
+    DataClustering.dendrogram_plot(df_scaled)
 
-    # # Perform K Means Analysis & Determine Cluster Memberships
-    # centroids, labels = DataClustering.k_means(df_scaled, 3,)
-    # centroids, labels = DataClustering.mean_shift(df_scaled)
+    # Perform K Means Analysis & Determine Cluster Memberships
+    centroids, labels = DataClustering.k_means(df_scaled, 3,)
+    centroids, labels = DataClustering.mean_shift(df_scaled)
 
-    # Perform Component Analysis
-    pca_var_comp_df, pca_info_df, pca_row_comp_df = ComponentAnalysis.principle_component_analysis(df_scaled)
-    print(pca_row_comp_df)
+    # # Perform Component Analysis
+    # pca_var_comp_df, pca_info_df, pca_row_comp_df = ComponentAnalysis.principle_component_analysis(df_scaled)
+    # print(pca_row_comp_df)
 
 # ----------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":

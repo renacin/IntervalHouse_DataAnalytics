@@ -178,7 +178,7 @@ class DataClustering():
     @staticmethod
     def dendrogram_plot(df_raw: "Pandas Dataframe"):
         """
-        Create a dendrogram to help the user identify the optimal number of clusters for thier clustering attempt
+        Create a dendrogram to help the user identify the optimal number of clusters for their clustering attempt
         """
 
         # Make Copy Just Incase
