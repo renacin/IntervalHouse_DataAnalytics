@@ -125,9 +125,9 @@ class DataClustering():
 
         # Iterate Through Max Num Of K For Elbow Chart
         wscc = []
-        num_k = range(1, 15)
+        num_k = range(1, 30)
         for k in num_k:
-            kmean_model = KMeans(n_clusters=k, init = 'k-means++', max_iter=300, n_init = 10, random_state=0)
+            kmean_model = KMeans(n_clusters=k, init = 'k-means++', max_iter=500, n_init = 10, random_state=0)
             kmean_model.fit(training_data)
             wscc.append(kmean_model.inertia_)
 
@@ -156,9 +156,9 @@ class DataClustering():
 
         # Run K-Means Analysis & Calculate Silhouette Score For Each K Iteration
         sil_score = []
-        num_k = range(2, 15)
+        num_k = range(2, 30)
         for k in num_k:
-            kmean_model = KMeans(n_clusters=k, init = 'k-means++', max_iter=300, n_init = 10, random_state=0)
+            kmean_model = KMeans(n_clusters=k, init = 'k-means++', max_iter=500, n_init = 10, random_state=0)
             kmean_model.fit(training_data)
             score = silhouette_score(training_data, kmean_model.labels_, metric='euclidean')
             sil_score.append(score)
