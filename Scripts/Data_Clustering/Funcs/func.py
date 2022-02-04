@@ -166,10 +166,6 @@ class DataClustering():
         # Find K Iteration With Highest Score
         max_k = (sil_score.index(max(sil_score))) + 2
 
-        # Print Values
-        for k, x in zip(num_k, sil_score):
-            print(f"K: {k}, Sil Score: {x}")
-
         # Plot The Elbow Chart
         plt.plot(num_k, sil_score, "bx-")
         plt.xlabel("Number Of Clusters (K)")

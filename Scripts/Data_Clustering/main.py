@@ -20,16 +20,15 @@ def main():
     df_filtered.drop("S_CTUID", axis=1, inplace=True)
     df_scaled = DataTransform.scaled_z(df_filtered)
 
-    # DataTransform.describe_data(df_scaled)
-    # DataTransform.corr_data(df_scaled, r"C:\Users\renac\Desktop\Coor_Matrix.csv")
-
-    # Determine Optimal Number Of Clusters
-    DataClustering.elbow_chart(df_scaled)
-    DataClustering.silhouette_chart(df_scaled)
-    DataClustering.dendrogram_plot(df_scaled)
+    # # Determine Optimal Number Of Clusters
+    # DataClustering.elbow_chart(df_scaled)
+    # DataClustering.silhouette_chart(df_scaled)
+    # DataClustering.dendrogram_plot(df_scaled)
 
     # Perform K Means Analysis & Determine Cluster Memberships
-    centroids, labels = DataClustering.k_means(df_scaled, 13)
+    centroids, labels = DataClustering.k_means(df_scaled, 11)
+
+    print(labels)
 
 
 # ----------------------------------------------------------------------------------------------------------------------
