@@ -166,6 +166,10 @@ class DataClustering():
         # Find K Iteration With Highest Score
         max_k = (sil_score.index(max(sil_score))) + 2
 
+        # Print Values
+        for k, x in zip(num_k, sil_score):
+            print(f"K: {k}, Sil Score: {x}")
+
         # Plot The Elbow Chart
         plt.plot(num_k, sil_score, "bx-")
         plt.xlabel("Number Of Clusters (K)")
@@ -234,11 +238,11 @@ class DataClustering():
         # Dataframe To Numpy Array For Clustering
         training_data = df_raw.to_numpy()
 
-        # Bandwidth is found automatically with
-        bandwidth = estimate_bandwidth(training_data, quantile=0.2, n_samples=500)
+        # # Bandwidth is found automatically with
+        # bandwidth = estimate_bandwidth(training_data, quantile=0.0001, n_jobs= -1)
 
         # Run the algorithm
-        mean_shift_model = MeanShift(bandwidth=bandwidth, bin_seeding=True)
+        mean_shift_model = MeanShift(bandwidth = 10, bin_seeding = True)
         mean_shift_model.fit(training_data)
         labels = mean_shift_model.labels_
         cluster_centers = mean_shift_model.cluster_centers_
