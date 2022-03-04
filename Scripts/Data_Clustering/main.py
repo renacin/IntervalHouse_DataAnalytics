@@ -183,8 +183,8 @@ def main():
     """ Main Logic Of Python Code """
 
     # FILL IN IMPORT & EXPORT PATHS
-    raw_data_path = r""
-    export_data_path = r""
+    raw_data_path = r"C:\Users\renac\Documents\Programming\Python\IntervalHouse_DataAnalytics\Scripts\Data_Clustering\Data\Census_CleanedData_Attempt3.csv"
+    export_data_path = r"C:\Users\renac\Desktop\Attempt3.csv"
 
     # DEL UNNEEDED COL IN CSV FIRST BEFORE USING THIS FEATURE
     focus_rows = []
@@ -201,7 +201,7 @@ def main():
     DataClustering.dendrogram_plot(df_scaled)
 
     # # PERFORM K MEANS WITH NUMBER_OF_CLUSTERS | UP TO USER TO CHANGE
-    # NUMBER_OF_CLUSTERS = 5
+    # NUMBER_OF_CLUSTERS = 7
     # labels_ = DataClustering.k_means(df_scaled, NUMBER_OF_CLUSTERS)
     #
     # # EXPORT DATA!
