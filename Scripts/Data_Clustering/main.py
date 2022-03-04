@@ -195,19 +195,19 @@ def main():
     df_filtered.drop("S_CTUID", axis=1, inplace=True)
     df_scaled = DataTransform.scaled_z(df_filtered)
 
-    # HOW MANY CLUSTERS?
-    DataClustering.elbow_chart(df_scaled)
-    DataClustering.silhouette_chart(df_scaled)
-    DataClustering.dendrogram_plot(df_scaled)
+    # # HOW MANY CLUSTERS?
+    # DataClustering.elbow_chart(df_scaled)
+    # DataClustering.silhouette_chart(df_scaled)
+    # DataClustering.dendrogram_plot(df_scaled)
 
-    # # PERFORM K MEANS WITH NUMBER_OF_CLUSTERS | UP TO USER TO CHANGE
-    # NUMBER_OF_CLUSTERS = 7
-    # labels_ = DataClustering.k_means(df_scaled, NUMBER_OF_CLUSTERS)
-    #
-    # # EXPORT DATA!
-    # final_df_data = {"S_CTUID": stuid_data, "Membership": labels_}
-    # final_df = pd.DataFrame.from_dict(final_df_data)
-    # final_df.to_csv(export_data_path, index = False)
+    # PERFORM K MEANS WITH NUMBER_OF_CLUSTERS | UP TO USER TO CHANGE
+    NUMBER_OF_CLUSTERS = 5
+    labels_ = DataClustering.k_means(df_scaled, NUMBER_OF_CLUSTERS)
+
+    # EXPORT DATA!
+    final_df_data = {"S_CTUID": stuid_data, "Membership": labels_}
+    final_df = pd.DataFrame.from_dict(final_df_data)
+    final_df.to_csv(export_data_path, index = False)
 
 
 # ----------------------------------------------------------------------------------------------------------------------
